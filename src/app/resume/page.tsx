@@ -19,16 +19,23 @@ export default function ResumePage() {
       <h1 className="text-3xl font-bold tracking-tight text-text">Resume</h1>
 
       {resumeExists ? (
-        <p className="mt-4">
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border-b border-border text-base font-semibold text-text transition-colors hover:border-accent hover:text-accent"
-          >
-            View resume (PDF) &#8594;
-          </a>
-        </p>
+        <>
+          <p className="mt-4">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border-b border-border text-base font-semibold text-text transition-colors hover:border-accent hover:text-accent"
+            >
+              View resume (PDF) &#8594;
+            </a>
+          </p>
+          <iframe
+            src="/resume.pdf"
+            title={`${siteConfig.name}'s resume`}
+            className="mt-6 h-[80vh] w-full rounded border border-border"
+          />
+        </>
       ) : (
         <p className="mt-4 max-w-[66ch] text-text-muted">
           Resume isn&apos;t uploaded yet. In the meantime, reach out directly
