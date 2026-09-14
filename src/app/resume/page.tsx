@@ -31,7 +31,7 @@ export default function ResumePage() {
             </a>
           </p>
           <iframe
-            src="/resume.pdf#view=FitH"
+            src="/resume.pdf"
             title={`${siteConfig.name}'s resume`}
             className="mt-6 aspect-[8.5/11] w-full rounded border border-border"
           />
