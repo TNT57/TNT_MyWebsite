@@ -17,6 +17,9 @@ export interface Project {
   metricExplanation: string;
   whatIdDoDifferently: string;
   links?: ProjectLinks;
+  // Optional — falls back to a greyscale placeholder when not set.
+  // TODO: Nathan, drop real screenshots in /public and set these per project.
+  imageSrc?: string;
 }
 
 export const projects: Project[] = [
@@ -68,9 +71,7 @@ export const projects: Project[] = [
       "TODO: Nathan, what's next for this one? More recent seasons, injury data, positional adjustments?",
     links: {
       repo: "https://github.com/TNT57/NBA-fair-value",
-      // TODO: your CV links the text "live demo" for this project but the
-      // PDF text extraction doesn't carry the actual URL. Send it over and
-      // I'll add it here (left out for now, per the link rule).
+      demo: "https://nba-fair-value.streamlit.app/",
     },
   },
   {
