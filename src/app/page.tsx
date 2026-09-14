@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { bioParagraphs, availabilityLine } from "@/content/about";
+import { bioParagraphs, availabilityLocation, availabilityRole } from "@/content/about";
 import { projects } from "@/content/projects";
 import { Section } from "@/components/Section";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -55,9 +55,14 @@ export default function Home() {
         ))}
       </div>
 
-      <span className="mt-2 mb-16 inline-flex items-center rounded bg-accent px-3.5 py-1.5 font-mono text-[12.5px] font-semibold text-accent-contrast">
-        {availabilityLine}
-      </span>
+      <div className="mt-2 mb-16 flex flex-wrap gap-3">
+        <span className="inline-flex items-center rounded bg-accent px-3.5 py-1.5 font-mono text-[12.5px] font-semibold text-accent-contrast">
+          {availabilityLocation}
+        </span>
+        <span className="inline-flex items-center rounded bg-accent px-3.5 py-1.5 font-mono text-[12.5px] font-semibold text-accent-contrast">
+          {availabilityRole}
+        </span>
+      </div>
 
       <Section title="Selected work">
         <div className="grid grid-cols-1 gap-7 md:grid-cols-3">

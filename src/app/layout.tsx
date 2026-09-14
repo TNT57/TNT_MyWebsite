@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { siteConfig } from "@/config/site";
+import { pageMetadata, siteUrl } from "@/app/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,8 +17,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: `${siteConfig.tagline}, based in ${siteConfig.location}.`,
+  metadataBase: new URL(siteUrl),
+  ...pageMetadata({
+    title: siteConfig.name,
+    description: `${siteConfig.tagline}, based in ${siteConfig.location}.`,
+    path: "/",
+  }),
+  // Every other page sets its own string title; this template turns it into
+  // "Page — Nathan Tran" automatically.
+  title: {
+    default: siteConfig.name,
+    template: `%s — ${siteConfig.name}`,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -4,9 +4,8 @@ export const siteConfig = {
   name: "Nathan Tran",
   tagline: "Graduate AI Engineer / Software Engineer",
   location: "Adelaide, South Australia",
-  // TODO: set the real canonical URL once this site is deployed to Vercel.
-  url: "TODO: canonical deploy URL (e.g. https://<project-name>.vercel.app)",
+  url: "https://tnt-website-jet.vercel.app",
   email: "trung.tn05@gmail.com",
   githubUrl: "https://github.com/TNT57",
-  linkedinUrl: "https://linkedin.com/in/nathan-tran",
+  linkedinUrl: "https://www.linkedin.com/in/nathan-tran-8e38e6/",
 } as const;
