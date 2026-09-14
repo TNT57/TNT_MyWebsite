@@ -12,11 +12,9 @@ export const availabilityLine =
   "Adelaide, SA · open to graduate AI Engineer, Software Engineer and ML Engineer roles";
 
 // Content for the /hobby route. Edit me freely.
-// TODO: Nathan — nothing in the CV or your messages says what your hobbies
-// are, so this is intentionally empty rather than invented. Give me a
-// sentence or two per hobby and I'll fill this in.
-export const hobbyIntro = "TODO: a line introducing this page.";
+export const hobbyIntro = "A few things outside of code.";
 export const hobbyItems: string[] = [
-  // "TODO: hobby one, one or two sentences.",
-  // "TODO: hobby two, one or two sentences.",
+  "Sports: I played on my high school's basketball team, and I'm the vice-president of a Vietnamese community soccer club here in Adelaide.",
+  "Music: I play piano, guitar, and a bit of drums.",
+  "Gaming: I'm into gaming in general.",
 ];
