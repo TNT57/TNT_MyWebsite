@@ -7,9 +7,9 @@ export const bioParagraphs: string[] = [
   "Outside coursework, I build full projects end to end: a RAG system that answers real Australian visa questions with cited sources, and a grocery price comparison app that tracks tens of thousands of real product prices across three supermarket chains.",
 ];
 
-// Shown near the top of the homepage. Location + availability only. Edit me freely.
-export const availabilityLine =
-  "Adelaide, SA · open to graduate AI Engineer, Software Engineer and ML Engineer roles";
+// Shown near the top of the homepage, as two short separate chips. Edit me freely.
+export const availabilityLocation = "Adelaide, SA";
+export const availabilityRole = "Open to graduate AI Engineer and SWE roles";
 
 // Content for the /hobby route. Edit me freely.
 export const hobbyIntro = "A few things outside of code.";

@@ -22,9 +22,11 @@ export default function ResumePage() {
         <p className="mt-4">
           <a
             href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="border-b border-border text-base font-semibold text-text transition-colors hover:border-accent hover:text-accent"
           >
-            Download resume (PDF) &#8594;
+            View resume (PDF) &#8594;
           </a>
         </p>
       ) : (

@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { bioParagraphs, availabilityLine } from "@/content/about";
+import { bioParagraphs, availabilityLocation, availabilityRole } from "@/content/about";
 import { Section } from "@/components/Section";
 import { pageMetadata } from "@/app/seo";
 
@@ -23,17 +23,29 @@ export default function AboutPage() {
     <div className="py-10">
       <h1 className="text-3xl font-bold tracking-tight text-text">About</h1>
 
-      <div className="mt-6 max-w-[66ch]">
-        {bioParagraphs.map((paragraph) => (
-          <p key={paragraph} className="mb-4 text-base text-text">
-            {paragraph}
-          </p>
-        ))}
+      <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
+        <span
+          role="img"
+          aria-label="Placeholder for a photo of Nathan Tran"
+          className="block aspect-[4/5] w-40 flex-none rounded border border-border bg-[repeating-linear-gradient(135deg,var(--border)_0_1px,transparent_1px_14px)] sm:w-48"
+        />
+        <div className="max-w-[66ch]">
+          {bioParagraphs.map((paragraph) => (
+            <p key={paragraph} className="mb-4 text-base text-text">
+              {paragraph}
+            </p>
+          ))}
+        </div>
       </div>
 
-      <span className="mt-2 mb-10 inline-flex items-center rounded bg-accent px-3.5 py-1.5 font-mono text-[12.5px] font-semibold text-accent-contrast">
-        {availabilityLine}
-      </span>
+      <div className="mt-2 mb-10 flex flex-wrap gap-3">
+        <span className="inline-flex items-center rounded bg-accent px-3.5 py-1.5 font-mono text-[12.5px] font-semibold text-accent-contrast">
+          {availabilityLocation}
+        </span>
+        <span className="inline-flex items-center rounded bg-accent px-3.5 py-1.5 font-mono text-[12.5px] font-semibold text-accent-contrast">
+          {availabilityRole}
+        </span>
+      </div>
 
       <Section title="Education">
         <p className="text-text">{education.degree}</p>
