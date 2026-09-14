@@ -27,13 +27,13 @@ export default function ResumePage() {
               rel="noopener noreferrer"
               className="border-b border-border text-base font-semibold text-text transition-colors hover:border-accent hover:text-accent"
             >
-              View resume (PDF) &#8594;
+              View resume detail &#8594;
             </a>
           </p>
           <iframe
-            src="/resume.pdf"
+            src="/resume.pdf#view=FitH"
             title={`${siteConfig.name}'s resume`}
-            className="mt-6 h-[80vh] w-full rounded border border-border"
+            className="mt-6 aspect-[8.5/11] w-full rounded border border-border"
           />
         </>
       ) : (
