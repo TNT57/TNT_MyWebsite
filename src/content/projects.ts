@@ -98,6 +98,7 @@ export const projects: Project[] = [
     links: {
       repo: "https://github.com/TNT57/Everything-Larper",
     },
+    imageSrc: "/everything-larper-card.png",
   },
   {
     slug: "pricecheck-au",
