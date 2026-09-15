@@ -23,7 +23,7 @@ const education = {
 
 export default function AboutPage() {
   const photoExists = fs.existsSync(
-    path.join(process.cwd(), "public", "profile.jpg"),
+    path.join(process.cwd(), "public", "1691113000549.jpg"),
   );
 
   return (
@@ -33,7 +33,7 @@ export default function AboutPage() {
       <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
         {photoExists ? (
           <Image
-            src="/profile.jpg"
+            src="/1691113000549.jpg"
             alt={`Photo of ${siteConfig.name}`}
             width={192}
             height={240}
