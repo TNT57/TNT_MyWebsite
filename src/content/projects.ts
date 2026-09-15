@@ -122,43 +122,4 @@ export const projects: Project[] = [
       // No repo link: the repo is private.
     },
   },
-  {
-    // TODO: Nathan, fill in project 5 whenever you're ready. Category below
-    // is a guess to satisfy the type system, not a real classification, until
-    // you replace this whole entry.
-    slug: "project-five-todo",
-    title: "TODO: project 5 name",
-    category: "Full-stack",
-    oneLine: "TODO: one-line value for project 5",
-    role: "TODO: your role on project 5",
-    status: "archive",
-    problem: "TODO: project 5 problem statement",
-    approach: "TODO: project 5 approach",
-    result: "TODO: project 5 result",
-    metric: "TODO: project 5 metric",
-    metricExplanation: "TODO: project 5 metric explained in plain English",
-    whatIdDoDifferently: "TODO: project 5 retrospective",
-    links: {
-      // TODO: repo and/or demo URL for project 5
-    },
-  },
-  {
-    // TODO: Nathan, fill in project 6 whenever you're ready. Same note as
-    // project 5 above about the placeholder category.
-    slug: "project-six-todo",
-    title: "TODO: project 6 name",
-    category: "Full-stack",
-    oneLine: "TODO: one-line value for project 6",
-    role: "TODO: your role on project 6",
-    status: "archive",
-    problem: "TODO: project 6 problem statement",
-    approach: "TODO: project 6 approach",
-    result: "TODO: project 6 result",
-    metric: "TODO: project 6 metric",
-    metricExplanation: "TODO: project 6 metric explained in plain English",
-    whatIdDoDifferently: "TODO: project 6 retrospective",
-    links: {
-      // TODO: repo and/or demo URL for project 6
-    },
-  },
 ];

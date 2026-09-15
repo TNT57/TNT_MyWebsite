@@ -15,27 +15,29 @@ export function ProjectCard({ project }: ProjectCardProps) {
       : undefined;
 
   return (
-    <article className="flex flex-col overflow-hidden rounded border border-border bg-surface">
+    <article className="group flex h-full flex-col overflow-hidden rounded border border-border bg-surface transition-shadow focus-within:shadow-[0_0_0_2px_var(--accent)] hover:shadow-[0_0_0_2px_var(--accent)]">
       {project.imageSrc ? (
-        <Image
-          src={project.imageSrc}
-          alt={`Screenshot of ${project.title}`}
-          width={640}
-          height={360}
-          className="aspect-video w-full object-cover"
-        />
+        <div className="overflow-hidden">
+          <Image
+            src={project.imageSrc}
+            alt={`Screenshot of ${project.title}`}
+            width={640}
+            height={360}
+            className="aspect-video w-full object-cover brightness-90 transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
+          />
+        </div>
       ) : (
         <span
           role="img"
           aria-label={`Placeholder screenshot for ${project.title}`}
-          className="block aspect-video w-full bg-[repeating-linear-gradient(135deg,var(--border)_0_1px,transparent_1px_14px)]"
+          className="block aspect-video w-full bg-[repeating-linear-gradient(135deg,var(--border)_0_1px,transparent_1px_14px)] brightness-90 transition-all duration-300 group-hover:brightness-110"
         />
       )}
       <div className="flex flex-1 flex-col gap-2 p-4">
         <span className="self-start rounded bg-accent px-2 py-0.5 font-mono text-[10.5px] font-semibold tracking-wide text-accent-contrast uppercase">
           {project.category}
         </span>
-        <h3 className="text-base font-bold tracking-tight text-text">
+        <h3 className="line-clamp-2 text-base font-bold tracking-tight text-text">
           <Link
             href={`/projects/${project.slug}`}
             className="transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
@@ -43,7 +45,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {project.title}
           </Link>
         </h3>
-        <p className="flex-1 text-sm text-text-muted">{project.oneLine}</p>
+        <p className="line-clamp-3 flex-1 text-sm text-text-muted">{project.oneLine}</p>
         <div className="flex flex-wrap gap-4">
           <Link
             href={`/projects/${project.slug}`}
