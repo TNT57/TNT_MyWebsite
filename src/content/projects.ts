@@ -18,7 +18,6 @@ export interface Project {
   whatIdDoDifferently: string;
   links?: ProjectLinks;
   // Optional — falls back to a greyscale placeholder when not set.
-  // TODO: Nathan, drop real screenshots in /public and set these per project.
   imageSrc?: string;
 }
 
@@ -49,6 +48,7 @@ export const projects: Project[] = [
       repo: "https://github.com/TNT57/Auto-updating-VISA-Intelligence-System",
       demo: "https://auto-updating-visa-intelligence-system.streamlit.app/",
     },
+    imageSrc: "/projects/visa-intelligence-system.png",
   },
   {
     slug: "nba-fair-value-model",
@@ -73,6 +73,7 @@ export const projects: Project[] = [
       repo: "https://github.com/TNT57/NBA-fair-value",
       demo: "https://nba-fair-value.streamlit.app/",
     },
+    imageSrc: "/projects/nba-fair-value-model.png",
   },
   {
     slug: "everything-larper",
@@ -121,5 +122,6 @@ export const projects: Project[] = [
       demo: "https://price-check-au.vercel.app",
       // No repo link: the repo is private.
     },
+    imageSrc: "/projects/pricecheck-au.png",
   },
 ];

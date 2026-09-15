@@ -1,3 +1,6 @@
+import fs from "node:fs";
+import path from "node:path";
+import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { bioParagraphs, availabilityLocation, availabilityRole } from "@/content/about";
 import { Section } from "@/components/Section";
@@ -19,16 +22,30 @@ const education = {
 };
 
 export default function AboutPage() {
+  const photoExists = fs.existsSync(
+    path.join(process.cwd(), "public", "profile.jpg"),
+  );
+
   return (
     <div className="py-10">
       <h1 className="text-3xl font-bold tracking-tight text-text">About</h1>
 
       <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
-        <span
-          role="img"
-          aria-label="Placeholder for a photo of Nathan Tran"
-          className="block aspect-[4/5] w-40 flex-none rounded border border-border bg-[repeating-linear-gradient(135deg,var(--border)_0_1px,transparent_1px_14px)] sm:w-48"
-        />
+        {photoExists ? (
+          <Image
+            src="/profile.jpg"
+            alt={`Photo of ${siteConfig.name}`}
+            width={192}
+            height={240}
+            className="aspect-[4/5] w-40 flex-none rounded border border-border object-cover sm:w-48"
+          />
+        ) : (
+          <span
+            role="img"
+            aria-label={`Placeholder for a photo of ${siteConfig.name}`}
+            className="block aspect-[4/5] w-40 flex-none rounded border border-border bg-[repeating-linear-gradient(135deg,var(--border)_0_1px,transparent_1px_14px)] sm:w-48"
+          />
+        )}
         <div className="max-w-[66ch]">
           {bioParagraphs.map((paragraph) => (
             <p key={paragraph} className="mb-4 text-base text-text">
