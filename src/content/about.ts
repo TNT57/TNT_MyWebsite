@@ -12,9 +12,31 @@ export const availabilityLocation = "Adelaide, SA";
 export const availabilityRole = "Open to graduate AI Engineer and SWE roles";
 
 // Content for the /hobby route. Edit me freely.
+export interface HobbyItem {
+  category: string;
+  text: string;
+  // Filename under /public. Card shows this image if it exists, else a
+  // placeholder — same pattern as the About-page photo.
+  image: string;
+  link?: { label: string; href: string };
+}
+
 export const hobbyIntro = "A few things outside of code.";
-export const hobbyItems: string[] = [
-  "Sports: I played on my high school's basketball team, and I'm the vice-president of a Vietnamese community soccer club here in Adelaide.",
-  "Music: I play piano, guitar, and a bit of drums.",
-  "Gaming: I'm into gaming in general.",
+export const hobbyItems: HobbyItem[] = [
+  {
+    category: "Sports",
+    text: "I played on my high school's basketball team, and I'm the vice-president of a Vietnamese community soccer club here in Adelaide.",
+    image: "hobby-sports.jpg",
+  },
+  {
+    category: "Music",
+    text: "I play piano, guitar, and a bit of drums.",
+    image: "hobby-music.jpg",
+  },
+  {
+    category: "Gaming",
+    text: "SmiteMe — a browser tool I built to practice smite timing on the dragon in League of Legends and Honor of Kings. It judges each tap Perfect to Too Slow and gets harder as you improve.",
+    image: "hobby-gaming.png",
+    link: { label: "Try it", href: "https://tnt57.github.io/SmiteMe" },
+  },
 ];
