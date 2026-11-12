@@ -20,8 +20,8 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          backgroundColor: "#f6f2ea",
-          color: "#211c14",
+          backgroundColor: "#030508",
+          color: "#f1f5fa",
           fontFamily: "sans-serif",
         }}
       >
@@ -30,7 +30,7 @@ export default function OpengraphImage() {
             fontSize: 28,
             fontWeight: 700,
             letterSpacing: 2,
-            color: "#a8480f",
+            color: "#22d3ee",
             textTransform: "uppercase",
           }}
         >
@@ -39,7 +39,7 @@ export default function OpengraphImage() {
         <div style={{ fontSize: 88, fontWeight: 700, marginTop: 24 }}>
           {siteConfig.name}
         </div>
-        <div style={{ fontSize: 36, color: "#7a6f5c", marginTop: 16 }}>
+        <div style={{ fontSize: 36, color: "#93a1b5", marginTop: 16 }}>
           {siteConfig.tagline}
         </div>
       </div>

@@ -1,33 +1,17 @@
 import { siteConfig } from "@/config/site";
+import { Container } from "@/components/Container";
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="flex flex-wrap items-center justify-between gap-4 border-t border-border py-6 text-sm text-text-muted">
-      <span>
-        &copy; {year} {siteConfig.name}
-      </span>
-      <div className="flex flex-wrap gap-4">
-        <a
-          href={siteConfig.githubUrl}
-          className="transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
-        >
-          GitHub
-        </a>
-        <a
-          href={siteConfig.linkedinUrl}
-          className="transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
-        >
-          LinkedIn
-        </a>
-        <a
-          href={`mailto:${siteConfig.email}`}
-          className="transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
-        >
-          Email
-        </a>
-      </div>
-    </footer>
+    <Container>
+      <footer className="mt-[clamp(56px,7vw,96px)] flex flex-wrap items-center justify-between gap-3 border-t border-line pt-7 pb-11 font-mono text-[12.5px] text-muted">
+        <span>
+          &copy; {year} {siteConfig.name}
+        </span>
+        <span>Built with Next.js, deployed on Vercel</span>
+      </footer>
+    </Container>
   );
 }

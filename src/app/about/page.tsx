@@ -1,10 +1,22 @@
 import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
+import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { bioParagraphs, availabilityLocation, availabilityRole } from "@/content/about";
-import { Section } from "@/components/Section";
+import {
+  aboutLead,
+  aboutLeadHighlight,
+  availabilityLocation,
+  background,
+  bioParagraphs,
+} from "@/content/about";
 import { pageMetadata } from "@/app/seo";
+import { Container } from "@/components/Container";
+import { PageHero } from "@/components/PageHero";
+import { TiltCard } from "@/components/TiltCard";
+import { Marquee } from "@/components/Marquee";
+import { ContactCTA } from "@/components/ContactCTA";
+import { ArrowRight } from "@/components/Icons";
 
 export const metadata = pageMetadata({
   title: "About",
@@ -12,88 +24,116 @@ export const metadata = pageMetadata({
   path: "/about",
 });
 
-// Not in about.ts (about.ts is out of scope for this change) but it's real,
-// sourced from the CV — not invented.
-const education = {
-  degree: "Bachelor of Computer Science, Major in Artificial Intelligence",
-  institution: "University of Adelaide (Global Citizens Scholarship)",
-  years: "2023–2026",
-  gpa: "GPA: 6.7/7.00",
-};
-
 export default function AboutPage() {
   const photoExists = fs.existsSync(
     path.join(process.cwd(), "public", "1691113000549.jpg"),
   );
 
   return (
-    <div className="py-10">
-      <h1 className="text-3xl font-bold tracking-tight text-text">About</h1>
+    <>
+      <PageHero
+        eyebrowLeft={siteConfig.tagline}
+        eyebrowRight={
+          <span className="flex items-center gap-2.5 text-text">
+            <span className="live-dot" aria-hidden="true" />
+            Open to graduate roles &middot; {availabilityLocation}
+          </span>
+        }
+        title={
+          <>
+            About <span className="outline-text">me</span>
+          </>
+        }
+      />
 
-      <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-start">
-        {photoExists ? (
-          <Image
-            src="/1691113000549.jpg"
-            alt={`Photo of ${siteConfig.name}`}
-            width={192}
-            height={240}
-            className="aspect-[4/5] w-40 flex-none rounded border border-border object-cover sm:w-48"
-          />
-        ) : (
-          <span
-            role="img"
-            aria-label={`Placeholder for a photo of ${siteConfig.name}`}
-            className="block aspect-[4/5] w-40 flex-none rounded border border-border bg-[repeating-linear-gradient(135deg,var(--border)_0_1px,transparent_1px_14px)] sm:w-48"
-          />
-        )}
-        <div className="max-w-[66ch]">
-          {bioParagraphs.map((paragraph) => (
-            <p key={paragraph} className="mb-4 text-base text-text">
-              {paragraph}
+      <Container>
+        <section className="flex flex-wrap items-start gap-[clamp(32px,6vw,96px)]">
+          <TiltCard lean="right" strength={14} className="min-w-0 flex-[0_1_380px]" cardClassName="rounded-[22px]">
+            {photoExists ? (
+              <Image
+                src="/1691113000549.jpg"
+                alt={`Photo of ${siteConfig.name}`}
+                width={400}
+                height={500}
+                priority
+                className="block aspect-[4/5] w-full object-cover"
+              />
+            ) : (
+              <span
+                role="img"
+                aria-label={`Placeholder for a photo of ${siteConfig.name}`}
+                className="placeholder-stripes block aspect-[4/5] w-full"
+              />
+            )}
+            <div className="flex items-center justify-between gap-3 border-t border-line px-[18px] py-3.5 font-mono text-xs text-muted">
+              <span className="text-text">{siteConfig.name}</span>
+              <span>{siteConfig.location}</span>
+            </div>
+          </TiltCard>
+
+          <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-6">
+            <p className="m-0 max-w-[34ch] font-display text-[clamp(26px,3vw,42px)] leading-[1.12] font-medium tracking-[-0.035em] text-balance">
+              {aboutLead} <span className="text-accent">{aboutLeadHighlight}</span>
             </p>
-          ))}
-        </div>
-      </div>
+            {bioParagraphs.map((paragraph) => (
+              <p
+                key={paragraph}
+                className="m-0 max-w-[66ch] text-[clamp(16px,1.35vw,18px)] leading-[1.65] text-pretty text-soft"
+              >
+                {paragraph}
+              </p>
+            ))}
+            <div className="flex flex-wrap gap-2.5 pt-2">
+              <Link href="/projects" className="btn btn-primary min-h-[50px] px-6 text-[15px]">
+                See the work <ArrowRight />
+              </Link>
+              <a href={siteConfig.githubUrl} className="btn btn-ghost min-h-[50px] px-6 text-[15px]">
+                GitHub
+              </a>
+              <a href={siteConfig.linkedinUrl} className="btn btn-ghost min-h-[50px] px-6 text-[15px]">
+                LinkedIn
+              </a>
+              <a href={`mailto:${siteConfig.email}`} className="btn btn-ghost min-h-[50px] px-6 text-[15px]">
+                Email
+              </a>
+            </div>
+          </div>
+        </section>
 
-      <div className="mt-2 mb-10 flex flex-wrap gap-3">
-        <span className="inline-flex items-center rounded bg-accent px-3.5 py-1.5 font-mono text-[12.5px] font-semibold text-accent-contrast">
-          {availabilityLocation}
-        </span>
-        <span className="inline-flex items-center rounded bg-accent px-3.5 py-1.5 font-mono text-[12.5px] font-semibold text-accent-contrast">
-          {availabilityRole}
-        </span>
-      </div>
+        <section aria-labelledby="background-title" className="pt-[clamp(80px,10vw,144px)]">
+          <div className="mb-[clamp(24px,4vw,48px)] flex flex-wrap items-end justify-between gap-3">
+            <h2
+              id="background-title"
+              className="m-0 font-display text-[clamp(40px,6.4vw,92px)] leading-[0.9] font-bold tracking-[-0.055em] uppercase"
+            >
+              Background
+            </h2>
+            <span className="font-mono text-[13px] text-muted">study and work</span>
+          </div>
+          <ul className="m-0 flex list-none flex-col border-b border-line p-0">
+            {background.map((item) => (
+              <li
+                key={item.title}
+                className="slide-row flex flex-wrap items-baseline gap-x-[clamp(20px,4vw,56px)] gap-y-2.5 border-t border-line py-[clamp(22px,3vw,36px)]"
+              >
+                <span className="flex-[0_0_190px] font-mono text-xs tracking-[0.1em] text-accent uppercase">
+                  {item.label}
+                </span>
+                <span className="slide-row-title flex-[1_1_360px] font-display text-[clamp(22px,2.5vw,34px)] leading-[1.1] font-bold tracking-[-0.035em]">
+                  {item.title}
+                </span>
+                <span className="flex-[1_1_300px] text-[15.5px] text-muted">{item.detail}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </Container>
 
-      <Section title="Education">
-        <p className="text-text">{education.degree}</p>
-        <p className="mt-1 text-text-muted">
-          {education.institution} &middot; {education.years}
-        </p>
-        <p className="mt-1 font-mono text-sm text-text-muted">{education.gpa}</p>
-      </Section>
+      <Marquee className="mt-[clamp(72px,9vw,120px)]" />
 
-      <Section title="Links">
-        <div className="flex flex-wrap gap-5">
-          <a
-            href={siteConfig.githubUrl}
-            className="border-b border-border text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent"
-          >
-            GitHub
-          </a>
-          <a
-            href={siteConfig.linkedinUrl}
-            className="border-b border-border text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent"
-          >
-            LinkedIn
-          </a>
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="border-b border-border text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent"
-          >
-            Email
-          </a>
-        </div>
-      </Section>
-    </div>
+      <Container>
+        <ContactCTA />
+      </Container>
+    </>
   );
 }
