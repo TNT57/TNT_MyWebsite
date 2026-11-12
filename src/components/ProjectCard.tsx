@@ -1,67 +1,48 @@
-import Image from "next/image";
-import Link from "next/link";
 import type { Project } from "@/content/projects";
+import { TiltCard } from "@/components/TiltCard";
+import { ProjectVisual } from "@/components/ProjectVisual";
+import { ProjectLinks } from "@/components/ProjectLinks";
+import { categoryLabel } from "@/components/ProjectRow";
 
 interface ProjectCardProps {
   project: Project;
+  number: string;
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
-  const href = project.links?.demo ?? project.links?.repo;
-  const linkLabel = project.links?.demo
-    ? "View live demo"
-    : project.links?.repo
-      ? "View repo"
-      : undefined;
-
+// /projects grid card: tilting screenshot on top, text below.
+export function ProjectCard({ project, number }: ProjectCardProps) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded border border-border bg-surface transition-shadow focus-within:shadow-[0_0_0_2px_var(--accent)] hover:shadow-[0_0_0_2px_var(--accent)]">
-      {project.imageSrc ? (
-        <div className="overflow-hidden">
-          <Image
-            src={project.imageSrc}
-            alt={`Screenshot of ${project.title}`}
-            width={640}
-            height={360}
-            className="aspect-video w-full object-cover brightness-90 transition-all duration-300 group-hover:scale-105 group-hover:brightness-105"
-          />
-        </div>
-      ) : (
-        <span
-          role="img"
-          aria-label={`Placeholder screenshot for ${project.title}`}
-          className="block aspect-video w-full bg-[repeating-linear-gradient(135deg,var(--border)_0_1px,transparent_1px_14px)] brightness-90 transition-all duration-300 group-hover:brightness-110"
-        />
-      )}
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <span className="self-start rounded bg-accent px-2 py-0.5 font-mono text-[10.5px] font-semibold tracking-wide text-accent-contrast uppercase">
-          {project.category}
-        </span>
-        <h3 className="line-clamp-2 text-base font-bold tracking-tight text-text">
-          <Link
-            href={`/projects/${project.slug}`}
-            className="transition-colors hover:text-accent focus-visible:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
+    <article className="group flex min-w-0 flex-col gap-[22px]">
+      <TiltCard strength={10}>
+        <ProjectVisual project={project} />
+      </TiltCard>
+      <div className="flex flex-col gap-3.5">
+        <div className="flex items-baseline gap-4">
+          <span
+            aria-hidden="true"
+            className="outline-num font-display text-[56px] leading-[0.9] font-bold tracking-[-0.05em]"
           >
-            {project.title}
-          </Link>
-        </h3>
-        <p className="line-clamp-3 flex-1 text-sm text-text-muted">{project.oneLine}</p>
-        <div className="flex flex-wrap gap-4">
-          <Link
-            href={`/projects/${project.slug}`}
-            className="mt-1 self-start border-b border-border text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent focus-visible:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
-          >
-            Case study &#8594;
-          </Link>
-          {href && linkLabel ? (
-            <a
-              href={href}
-              className="mt-1 self-start border-b border-border text-sm font-semibold text-text transition-colors hover:border-accent hover:text-accent focus-visible:text-accent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2"
-            >
-              {linkLabel} &#8594;
-            </a>
-          ) : null}
+            {number}
+          </span>
+          <span className="font-mono text-xs tracking-[0.1em] text-accent uppercase">
+            {categoryLabel(project)}
+          </span>
         </div>
+        <h2 className="m-0 font-display text-[clamp(26px,2.6vw,36px)] leading-[1.05] font-bold tracking-[-0.04em] text-balance">
+          {project.title}
+        </h2>
+        <p className="m-0 max-w-[54ch] text-muted">{project.oneLine}</p>
+        {project.headline ? (
+          <div className="flex flex-wrap items-baseline gap-x-3.5 gap-y-1">
+            <span className="font-display text-[44px] leading-none font-bold tracking-[-0.05em] text-accent">
+              {project.headline.value}
+            </span>
+            <span className="flex-[1_1_200px] text-[14.5px] text-soft">
+              {project.headline.label}
+            </span>
+          </div>
+        ) : null}
+        <ProjectLinks project={project} />
       </div>
     </article>
   );
