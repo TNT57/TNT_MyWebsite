@@ -53,7 +53,7 @@ export function ProjectVisual({ project, variant = "card", priority }: ProjectVi
           alt={`Screenshot of ${project.title}`}
           width={1904}
           height={902}
-          priority={priority}
+          preload={priority}
           sizes={variant === "hero" ? "(min-width: 1200px) 1120px, 100vw" : "(min-width: 900px) 50vw, 100vw"}
           className={`tilt-shot block w-full object-cover object-top ${
             variant === "hero" ? "aspect-[1903/902]" : "aspect-[16/9.4]"

@@ -94,6 +94,7 @@ export default function Home() {
           <div className="flex flex-wrap gap-4">
             <Link
               href="/about"
+              aria-label="About me: study and work"
               className="lift box-border flex min-w-0 flex-[1.6_1_420px] flex-wrap gap-6 rounded-[22px] border border-line bg-surface p-[clamp(22px,2.6vw,32px)]"
             >
               <Image
@@ -116,6 +117,7 @@ export default function Home() {
 
             <Link
               href="/hobby"
+              aria-label="Hobbies: sports and music"
               className="lift box-border flex min-w-0 flex-[1_1_240px] flex-col gap-3 rounded-[22px] border border-line bg-surface p-[clamp(22px,2.6vw,32px)]"
             >
               <span className="font-mono text-xs tracking-[0.1em] text-accent uppercase">Sports + music</span>
@@ -130,6 +132,7 @@ export default function Home() {
             {gaming?.link ? (
               <a
                 href={gaming.link.href}
+                aria-label={`${gaming.headline}: ${gaming.link.label}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="lift box-border flex min-w-0 flex-[1_1_240px] flex-col gap-3 rounded-[22px] border border-line bg-surface p-[clamp(22px,2.6vw,32px)]"

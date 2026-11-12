@@ -23,7 +23,7 @@ export function Nav() {
         <Link
           href="/"
           aria-label="Home"
-          className="flex min-h-11 items-center font-display text-xl font-bold tracking-[-0.04em] transition-colors hover:text-accent"
+          className="flex min-h-11 min-w-11 items-center font-display text-xl font-bold tracking-[-0.04em] transition-colors hover:text-accent"
         >
           NT<span className="text-accent">/</span>
         </Link>
@@ -36,7 +36,7 @@ export function Nav() {
                 key={route.href}
                 href={route.href}
                 aria-current={active ? "page" : undefined}
-                className={`flex min-h-11 items-center rounded-full border px-3.5 transition-colors ${
+                className={`flex min-h-11 items-center rounded-full border px-2.5 transition-colors sm:px-3.5 ${
                   active
                     ? "border-[color-mix(in_srgb,var(--accent)_50%,var(--line))] text-accent"
                     : "border-transparent text-muted hover:bg-surface-2 hover:text-accent"

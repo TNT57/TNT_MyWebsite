@@ -55,7 +55,7 @@ export default function AboutPage() {
                 alt={`Photo of ${siteConfig.name}`}
                 width={400}
                 height={500}
-                priority
+                preload
                 className="block aspect-[4/5] w-full object-cover"
               />
             ) : (

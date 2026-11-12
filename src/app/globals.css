@@ -119,10 +119,12 @@ button:focus-visible {
 .glow-area::before {
   content: "";
   position: absolute;
-  inset: -96px 0 0;
+  inset: -200px 0 0;
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 140px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 140px), transparent);
   background: radial-gradient(
-    640px circle at var(--mx, 70%) var(--my, 40%),
+    640px circle at var(--mx, 70%) calc(var(--my, 40%) + 200px),
     color-mix(in srgb, var(--accent) 17%, transparent),
     transparent 65%
   );
@@ -130,7 +132,8 @@ button:focus-visible {
 
 /* Scrolling tool ticker; pauses on hover. */
 .marquee-track { animation: marquee 36s linear infinite; }
-.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track { animation-play-state: paused; }
 
 /* 3D tilt card. TiltCard sets --rx/--ry/--mx/--my while hovered. */
 .tilt { perspective: 1400px; }
@@ -151,13 +154,16 @@ button:focus-visible {
   transition: opacity 0.35s;
   background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.13), transparent 60%);
 }
-.tilt:hover .tilt-card::after { opacity: 1; }
-.tilt:hover .tilt-card {
-  border-color: color-mix(in srgb, var(--accent) 60%, var(--line));
-  box-shadow: 0 50px 120px -40px var(--accent);
-}
 .tilt-shot { filter: brightness(0.82) saturate(0.9); transition: filter 0.5s; }
-.tilt:hover .tilt-shot { filter: none; }
+/* Hover effects only on devices with a real mouse, so taps don't stick. */
+@media (hover: hover) {
+  .tilt:hover .tilt-card::after { opacity: 1; }
+  .tilt:hover .tilt-card {
+    border-color: color-mix(in srgb, var(--accent) 60%, var(--line));
+    box-shadow: 0 50px 120px -40px var(--accent);
+  }
+  .tilt:hover .tilt-shot { filter: none; }
+}
 
 /* Buttons */
 .btn {

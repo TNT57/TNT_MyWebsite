@@ -32,7 +32,8 @@ export interface Project {
   metricExplanation: string;
   whatIdDoDifferently: string;
   links?: ProjectLinks;
-  // Optional — falls back to a greyscale placeholder when not set.
+  // Screenshot of the live demo. Projects without a demo link show a
+  // drawn visual instead, so this is only used when links.demo is set.
   imageSrc?: string;
   // Short label shown next to the category, e.g. "RAG". Optional.
   subCategory?: string;
@@ -190,7 +191,6 @@ export const projects: Project[] = [
     links: {
       repo: "https://github.com/TNT57/Everything-Larper",
     },
-    imageSrc: "/everything-larper-card.png",
     titleOutline: "Larper",
     stack: ["Claude Skills (SKILL.md)", "Eval rubrics", "Guardrail tests"],
     pipeline: [

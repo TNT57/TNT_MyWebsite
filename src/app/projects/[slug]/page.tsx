@@ -118,13 +118,6 @@ export default async function ProjectPage({
 
   // Sections skip text that is still a TODO placeholder.
   const showResultNumbers = Boolean(project.stats?.length) && !isTodo(project.metric);
-  const sections = [
-    { title: "Problem", show: true },
-    { title: "Approach", show: true },
-    { title: "Result", show: true },
-    { title: "Next time", show: !isTodo(project.whatIdDoDifferently) },
-  ].filter((s) => s.show);
-  const numberOf = (title: string) => pad(sections.findIndex((s) => s.title === title) + 1);
 
   return (
     <>
@@ -180,11 +173,11 @@ export default async function ProjectPage({
         </TiltCard>
 
         <div className="flex flex-col gap-[clamp(64px,8vw,112px)] pt-[clamp(72px,9vw,128px)]">
-          <SectionRow number={numberOf("Problem")} title="Problem">
+          <SectionRow number="01" title="Problem">
             <Prose>{project.problem}</Prose>
           </SectionRow>
 
-          <SectionRow number={numberOf("Approach")} title="Approach">
+          <SectionRow number="02" title="Approach">
             <Prose>{project.approach}</Prose>
             <ol className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(170px,100%),1fr))] gap-4 p-0">
               {project.pipeline.map((step, i) => (
@@ -200,7 +193,7 @@ export default async function ProjectPage({
             </ol>
           </SectionRow>
 
-          <SectionRow number={numberOf("Result")} title="Result">
+          <SectionRow number="03" title="Result">
             <Prose>{project.result}</Prose>
             {showResultNumbers ? (
               <>
@@ -234,7 +227,7 @@ export default async function ProjectPage({
           </SectionRow>
 
           {!isTodo(project.whatIdDoDifferently) ? (
-            <SectionRow number={numberOf("Next time")} title="Next time">
+            <SectionRow number="04" title="Next time">
               <Prose>{project.whatIdDoDifferently}</Prose>
             </SectionRow>
           ) : null}

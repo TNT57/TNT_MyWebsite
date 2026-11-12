@@ -1,6 +1,6 @@
 "use client";
 
-import type { MouseEvent } from "react";
+import type { PointerEvent } from "react";
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -29,7 +29,9 @@ export function TiltCard({
   className,
   cardClassName,
 }: TiltCardProps) {
-  function tilt(event: MouseEvent<HTMLDivElement>) {
+  function tilt(event: PointerEvent<HTMLDivElement>) {
+    // Touch taps would leave the card stuck mid-tilt, so only a mouse tilts it.
+    if (event.pointerType !== "mouse") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const el = event.currentTarget;
     const rect = el.getBoundingClientRect();
@@ -41,7 +43,7 @@ export function TiltCard({
     el.style.setProperty("--my", `${event.clientY - rect.top}px`);
   }
 
-  function reset(event: MouseEvent<HTMLDivElement>) {
+  function reset(event: PointerEvent<HTMLDivElement>) {
     const el = event.currentTarget;
     el.style.removeProperty("--ry");
     el.style.removeProperty("--rx");
@@ -51,8 +53,8 @@ export function TiltCard({
 
   return (
     <div
-      onMouseMove={tilt}
-      onMouseLeave={reset}
+      onPointerMove={tilt}
+      onPointerLeave={reset}
       className={`tilt ${className ?? ""}`}
       style={{ "--rx0": rx, "--ry0": ry } as React.CSSProperties}
     >

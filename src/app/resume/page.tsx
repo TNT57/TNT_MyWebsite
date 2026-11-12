@@ -61,7 +61,9 @@ export default function ResumePage() {
 
       <Container>
         <section className="flex flex-wrap items-start gap-[clamp(32px,6vw,88px)]">
-          <div className="min-w-0 max-w-[640px] flex-[1.2_1_420px] overflow-hidden rounded-[18px] border border-line bg-surface shadow-[0_50px_120px_-50px_color-mix(in_srgb,var(--accent)_60%,transparent)]">
+          {/* Phones can't show a PDF inline, so the frame only appears from
+              the sm breakpoint up; the Open/Download buttons cover phones. */}
+          <div className={`${resumeExists ? "hidden sm:block" : ""} min-w-0 max-w-[640px] flex-[1.2_1_420px] overflow-hidden rounded-[18px] border border-line bg-surface shadow-[0_50px_120px_-50px_color-mix(in_srgb,var(--accent)_60%,transparent)]`}>
             <div className="flex items-center justify-between gap-3.5 border-b border-line px-4 py-3 font-mono text-[11.5px] text-muted">
               <span>resume.pdf</span>
               <span>fit to width</span>

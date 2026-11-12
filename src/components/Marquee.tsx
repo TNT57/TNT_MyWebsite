@@ -22,6 +22,8 @@ function Row({ hidden }: { hidden?: boolean }) {
 export function Marquee({ className }: { className?: string }) {
   return (
     <div
+      tabIndex={0}
+      aria-label="Tools I use (focus to pause)"
       className={`marquee overflow-hidden border-y border-line ${className ?? ""}`}
     >
       <div className="marquee-track flex w-max font-display text-[clamp(18px,2vw,26px)] font-medium tracking-[-0.02em] whitespace-nowrap">

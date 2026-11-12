@@ -51,7 +51,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
           );
         })}
       </div>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(min(480px,100%),1fr))] gap-x-[clamp(24px,3vw,40px)] gap-y-[clamp(40px,5vw,72px)]">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(480px,100%),1fr))] gap-x-[clamp(24px,3vw,40px)] gap-y-[clamp(40px,5vw,72px)]">
         {visible.map(({ project, number }) => (
           <div
             key={project.slug}
