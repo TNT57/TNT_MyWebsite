@@ -88,6 +88,9 @@ button:focus-visible {
 .rise-1 { animation-delay: 0.12s; }
 .rise-2 { animation-delay: 0.24s; }
 .rise-3 { animation-delay: 0.36s; }
+.rise-4 { animation-delay: 0.48s; }
+.rise-5 { animation-delay: 0.6s; }
+.rise-6 { animation-delay: 0.8s; }
 
 /* The pulsing "available" dot. */
 .live-dot {
@@ -165,25 +168,55 @@ button:focus-visible {
   .tilt:hover .tilt-shot { filter: none; }
 }
 
-/* Buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 9999px;
-  font-weight: 500;
-  transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s, border-color 0.25s, color 0.25s;
+/* Sticky frosted-glass menu. */
+.glass-nav {
+  background: rgba(3, 5, 8, 0.55);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  border-bottom: 1px solid rgba(42, 54, 71, 0.55);
 }
-.btn:hover { transform: translateY(-3px); }
-.btn-primary {
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-weight: 600;
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 60%, transparent), 0 10px 34px -12px var(--accent);
+
+/* Homepage proof strip cells. */
+.proof-cell { transition: background-color 0.3s; }
+.proof-label { transition: color 0.3s; }
+.proof-cell:hover { background: color-mix(in srgb, var(--accent) 5%, #070b11); }
+.proof-cell:hover .proof-label { color: var(--accent); }
+
+/* "What I can do" cards. */
+.skill-card { transition: border-color 0.3s, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), background-color 0.3s; }
+.skill-num { transition: color 0.3s; }
+.skill-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+  transform: translateY(-4px);
+  background: #0c121c;
 }
-.btn-primary:hover { box-shadow: 0 0 0 1px var(--accent), 0 16px 44px -10px var(--accent); }
-.btn-ghost { border: 1px solid var(--line-strong); color: var(--text); }
-.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+.skill-card:hover .skill-num { color: var(--accent); }
+
+/* Anchor jumps land below the sticky menu. */
+[id] { scroll-margin-top: 80px; }
+
+/* Buttons. In the components layer so Tailwind utilities (e.g. `hidden`)
+   can still override them. */
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 9999px;
+    font-weight: 500;
+    transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.25s, border-color 0.25s, color 0.25s;
+  }
+  .btn:hover { transform: translateY(-3px); }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 60%, transparent), 0 10px 34px -12px var(--accent);
+  }
+  .btn-primary:hover { box-shadow: 0 0 0 1px var(--accent), 0 16px 44px -10px var(--accent); }
+  .btn-ghost { border: 1px solid var(--line-strong); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+}
 
 /* Cards that lift on hover. */
 .lift { transition: border-color 0.3s, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); }

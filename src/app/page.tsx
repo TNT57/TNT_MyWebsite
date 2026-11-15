@@ -8,11 +8,15 @@ import {
   hobbyItems,
 } from "@/content/about";
 import { projects } from "@/content/projects";
+import { proofStats, skills } from "@/content/home";
 import { Container } from "@/components/Container";
 import { GlowArea } from "@/components/GlowArea";
 import { Marquee } from "@/components/Marquee";
 import { ProjectRow } from "@/components/ProjectRow";
 import { ContactCTA } from "@/components/ContactCTA";
+import { ScrambleText } from "@/components/ScrambleText";
+import { ProofStrip } from "@/components/ProofStrip";
+import { SkillCards } from "@/components/SkillCards";
 import { ArrowDown, ArrowUpRight } from "@/components/Icons";
 
 const shownProjects = projects.filter((project) => project.status !== "archive");
@@ -25,11 +29,11 @@ export default function Home() {
       <GlowArea>
         <Container className="relative">
           <header className="flex flex-col gap-[clamp(20px,3vw,36px)] pt-[clamp(32px,5vw,64px)] pb-[clamp(48px,6vw,80px)]">
-            <div className="rise flex flex-wrap items-center justify-between gap-x-6 gap-y-2.5 font-mono text-[13px] text-muted">
-              <span>{siteConfig.tagline}</span>
+            <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2.5 font-mono text-[13px] text-muted">
+              <ScrambleText text={siteConfig.tagline} />
               <span className="flex items-center gap-2.5 text-text">
                 <span className="live-dot" aria-hidden="true" />
-                Open to graduate roles &middot; {availabilityLocation}
+                <ScrambleText text={`Open to graduate roles · ${availabilityLocation}`} delay={120} />
               </span>
             </div>
 
@@ -38,13 +42,13 @@ export default function Home() {
               <span aria-hidden="true" className="rise rise-1 block">
                 Nathan
               </span>
-              <div className="rise rise-2 flex flex-wrap items-end gap-[clamp(16px,3vw,48px)]">
-                <span aria-hidden="true" className="outline-text">
+              <div className="flex flex-wrap items-end gap-[clamp(16px,3vw,48px)]">
+                <span aria-hidden="true" className="rise rise-2 outline-text">
                   Tran
                 </span>
                 <div className="flex flex-[1_1_320px] flex-col gap-5 pb-[0.06em] font-sans text-[clamp(16px,1.45vw,19px)] leading-normal font-normal tracking-normal text-muted normal-case">
-                  <p className="m-0 max-w-[46ch] text-pretty">{homeIntro}</p>
-                  <div className="flex flex-wrap gap-3">
+                  <p className="rise rise-4 m-0 max-w-[46ch] text-pretty">{homeIntro}</p>
+                  <div className="rise rise-5 flex flex-wrap gap-3">
                     <a href="#work" className="btn btn-primary min-h-[52px] px-[26px] text-[15px]">
                       See the work <ArrowDown size={16} />
                     </a>
@@ -55,6 +59,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
+
+            <ProofStrip stats={proofStats} />
           </header>
         </Container>
       </GlowArea>
@@ -62,14 +68,43 @@ export default function Home() {
       <Marquee />
 
       <Container>
-        <section id="work" aria-labelledby="work-title" className="scroll-mt-6 pt-[clamp(64px,8vw,112px)]">
+        <section aria-labelledby="skills-title" className="pt-[clamp(64px,8vw,112px)]">
+          <div className="mb-[clamp(28px,4vw,48px)] flex flex-wrap items-end justify-between gap-3">
+            <div className="flex flex-col gap-3.5">
+              <ScrambleText
+                text="// what I can do for your team"
+                start="view"
+                className="font-mono text-[13px] text-accent"
+              />
+              <h2
+                id="skills-title"
+                className="m-0 font-display text-[clamp(40px,6.4vw,92px)] leading-[0.9] font-bold tracking-[-0.055em] uppercase"
+              >
+                What I can <span className="outline-text">do</span>
+              </h2>
+            </div>
+            <span className="max-w-[38ch] font-mono text-[13px] text-muted">
+              Every skill below points to a project that proves it.
+            </span>
+          </div>
+          <SkillCards skills={skills} />
+        </section>
+
+        <section id="work" aria-labelledby="work-title" className="pt-[clamp(80px,10vw,136px)]">
           <div className="mb-[clamp(40px,6vw,80px)] flex flex-wrap items-end justify-between gap-3">
-            <h2
-              id="work-title"
-              className="m-0 font-display text-[clamp(40px,6.4vw,92px)] leading-[0.9] font-bold tracking-[-0.055em] uppercase"
-            >
-              Selected work
-            </h2>
+            <div className="flex flex-col gap-3.5">
+              <ScrambleText
+                text="// the proof, in detail"
+                start="view"
+                className="font-mono text-[13px] text-accent"
+              />
+              <h2
+                id="work-title"
+                className="m-0 font-display text-[clamp(40px,6.4vw,92px)] leading-[0.9] font-bold tracking-[-0.055em] uppercase"
+              >
+                Selected work
+              </h2>
+            </div>
             <span className="font-mono text-[13px] text-muted">
               ({String(shownProjects.length).padStart(2, "0")}) projects, all built solo
             </span>

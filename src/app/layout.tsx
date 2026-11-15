@@ -45,7 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col overflow-x-hidden bg-bg font-sans text-base leading-[1.55] text-text">
+      <body className="flex min-h-full flex-col overflow-x-clip bg-bg font-sans text-base leading-[1.55] text-text">
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
