@@ -5,7 +5,7 @@ import { ArrowRight } from "@/components/Icons";
 // "What I can do" cards; each ends with links to the work that proves it.
 export function SkillCards({ skills }: { skills: Skill[] }) {
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {skills.map((skill, i) => (
         <article
           key={skill.title}

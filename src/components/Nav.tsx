@@ -21,7 +21,7 @@ export function Nav() {
       <Container>
         <nav
           aria-label="Main"
-          className="flex items-center justify-between gap-x-3 gap-y-2 py-2.5 font-mono text-xs sm:text-[13px]"
+          className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 py-2.5 font-mono text-xs sm:text-[13px]"
         >
           <Link
             href="/"
@@ -30,7 +30,7 @@ export function Nav() {
           >
             NT<span className="text-accent">/</span>
           </Link>
-          <div className="flex items-center gap-0.5">
+          <div className="flex flex-wrap items-center justify-end gap-0.5">
             {routes.map((route) => {
               const active =
                 pathname === route.href || pathname.startsWith(`${route.href}/`);
@@ -51,7 +51,7 @@ export function Nav() {
             })}
             <a
               href={`mailto:${siteConfig.email}`}
-              className="btn btn-primary ml-2 hidden min-h-10 px-4 font-sans text-[13.5px] sm:inline-flex"
+              className="btn btn-primary ml-2 hidden min-h-11 px-4 font-sans text-[13.5px] sm:inline-flex"
             >
               Get in touch
             </a>

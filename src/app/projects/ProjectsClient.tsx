@@ -41,7 +41,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
               type="button"
               aria-pressed={on}
               onClick={() => setActive(label)}
-              className={`btn min-h-[46px] cursor-pointer px-5 text-sm font-semibold ${
+              className={`btn min-h-[46px] cursor-pointer px-5 text-sm ${
                 on ? "btn-primary" : "btn-ghost"
               }`}
             >

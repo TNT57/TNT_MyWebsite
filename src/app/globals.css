@@ -37,6 +37,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keep anchors and keyboard focus clear of the sticky menu. */
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -170,7 +172,8 @@ button:focus-visible {
 
 /* Sticky frosted-glass menu. */
 .glass-nav {
-  background: rgba(3, 5, 8, 0.55);
+  /* 0.85 keeps link text readable even over the white screenshots. */
+  background: rgba(3, 5, 8, 0.85);
   -webkit-backdrop-filter: blur(16px) saturate(160%);
   backdrop-filter: blur(16px) saturate(160%);
   border-bottom: 1px solid rgba(42, 54, 71, 0.55);
@@ -185,15 +188,14 @@ button:focus-visible {
 /* "What I can do" cards. */
 .skill-card { transition: border-color 0.3s, transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), background-color 0.3s; }
 .skill-num { transition: color 0.3s; }
-.skill-card:hover {
-  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
-  transform: translateY(-4px);
-  background: #0c121c;
+@media (hover: hover) {
+  .skill-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+    transform: translateY(-4px);
+    background: #0c121c;
+  }
+  .skill-card:hover .skill-num { color: var(--accent); }
 }
-.skill-card:hover .skill-num { color: var(--accent); }
-
-/* Anchor jumps land below the sticky menu. */
-[id] { scroll-margin-top: 80px; }
 
 /* Buttons. In the components layer so Tailwind utilities (e.g. `hidden`)
    can still override them. */

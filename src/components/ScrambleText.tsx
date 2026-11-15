@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { canAnimate } from "@/components/motion";
 
 const GLYPHS = "!<>-_/[]{}=+*^?#01";
 
@@ -26,7 +27,7 @@ export function ScrambleText({ text, start = "load", delay = 0, className }: Scr
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!canAnimate()) return;
 
     let frame = 0;
     let timer: ReturnType<typeof setTimeout> | undefined;

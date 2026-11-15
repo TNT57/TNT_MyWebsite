@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { ProofStat } from "@/content/home";
 import { ArrowUpRight } from "@/components/Icons";
+import { canAnimate } from "@/components/motion";
 
 function format(stat: ProofStat, progress: number) {
   const n = stat.value * progress;
@@ -21,7 +22,7 @@ export function ProofStrip({ stats }: { stats: ProofStat[] }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!canAnimate()) return;
     const el = ref.current;
     if (!el) return;
 
@@ -47,7 +48,8 @@ export function ProofStrip({ stats }: { stats: ProofStat[] }) {
           timer = setTimeout(run, 900);
         }
       },
-      { threshold: 0.4 },
+      // Start as soon as the top of the strip shows (it is tall on phones).
+      { threshold: 0, rootMargin: "0px 0px -60px 0px" },
     );
     observer.observe(el);
 
@@ -65,7 +67,7 @@ export function ProofStrip({ stats }: { stats: ProofStat[] }) {
       ref={ref}
       className="rise rise-6 overflow-hidden rounded-[20px] border border-line bg-[rgba(10,15,23,0.72)]"
     >
-      <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(240px,100%),1fr))] gap-px bg-line p-0">
+      <ul className="m-0 grid list-none grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4 bg-line p-0">
         {stats.map((stat) => (
           <li key={stat.label} className="flex">
             <Link

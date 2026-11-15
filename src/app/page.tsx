@@ -90,8 +90,9 @@ export default function Home() {
           <SkillCards skills={skills} />
         </section>
 
-        <section id="work" aria-labelledby="work-title" className="pt-[clamp(80px,10vw,136px)]">
-          <div className="mb-[clamp(40px,6vw,80px)] flex flex-wrap items-end justify-between gap-3">
+        <section aria-labelledby="work-title" className="pt-[clamp(80px,10vw,136px)]">
+          {/* The jump target sits on the heading row, so "See the work" lands on it. */}
+          <div id="work" className="mb-[clamp(40px,6vw,80px)] flex flex-wrap items-end justify-between gap-3">
             <div className="flex flex-col gap-3.5">
               <ScrambleText
                 text="// the proof, in detail"
