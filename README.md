@@ -30,6 +30,13 @@ Open `src/content/about.ts` and edit the plain strings directly
 `availabilityRole`, `hobbyIntro`, `hobbyItems`). These feed the homepage,
 `/about`, `/hobby` and `/resume` automatically.
 
+## Edit the homepage numbers and skills
+
+Open `src/content/home.ts`. `proofStats` are the four numbers under the
+hero (they count up from 0; `bar` is how full the little bar is, 0–100).
+`skills` are the "What I can do" cards; each `proof` link should point at the
+project or page that backs the skill up.
+
 ## Change the look
 
 Colours live at the top of `src/app/globals.css`. Change `--accent` to
