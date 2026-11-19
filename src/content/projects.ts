@@ -3,6 +3,21 @@ export interface ProjectLinks {
   demo?: string;
 }
 
+// One step of the "how it works" strip on a case study page.
+export interface PipelineStep {
+  step: string; // short verb, e.g. "render"
+  title: string;
+  text: string;
+}
+
+// A big number on a case study. `before`/`after` (0–100) draw a comparison bar.
+export interface ProjectStat {
+  label: string;
+  value: string;
+  before?: number;
+  after?: number;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -17,10 +32,21 @@ export interface Project {
   metricExplanation: string;
   whatIdDoDifferently: string;
   links?: ProjectLinks;
-  // Optional — falls back to a greyscale placeholder when not set.
+  // Screenshot of the live demo. Projects without a demo link show a
+  // drawn visual instead, so this is only used when links.demo is set.
   imageSrc?: string;
+  // Short label shown next to the category, e.g. "RAG". Optional.
+  subCategory?: string;
+  // One word of the title drawn as glowing outline text on the case study.
+  titleOutline?: string;
+  // Big number on project cards. Leave out when there's no honest number yet.
+  headline?: { value: string; label: string };
+  stack: string[];
+  pipeline: PipelineStep[];
+  stats?: ProjectStat[];
 }
 
+// Order here is the order shown on the homepage and /projects.
 export const projects: Project[] = [
   {
     slug: "visa-intelligence-system",
@@ -49,56 +75,23 @@ export const projects: Project[] = [
       demo: "https://auto-updating-visa-intelligence-system.streamlit.app/",
     },
     imageSrc: "/autoupdatevisascreenshot.png",
-  },
-  {
-    slug: "nba-fair-value-model",
-    title: "NBA Fair-Value Model",
-    category: "AI/ML",
-    oneLine:
-      "Predicts what an NBA player is actually worth from on-court performance alone, then flags who's overpaid or underpaid.",
-    role: "Solo rebuild of an earlier coursework project.",
-    status: "active",
-    problem:
-      "Rebuilt from an earlier data-mining coursework version. That original model had target leakage: salary-derived numbers were still present in the feature matrix, so it was partly predicting salary from salary rather than from performance, which made its \"fair value\" number meaningless.",
-    approach:
-      "Retrained a gradient-boosted model on six seasons (about 2,100 player-seasons) of performance-only stats scraped from Basketball-Reference and ESPN, covering scoring, rebounding, playmaking, efficiency, age and availability, with every salary-derived column removed. Added a unit test that fails the build if any salary-derived column re-enters the feature matrix, and validated with leave-one-season-out cross-validation rather than a single train/test split.",
-    result:
-      "The rebuilt model holds an R² of 0.73 across held-out seasons (0.62 to 0.78 depending on the season), and recovers cases that match intuition: Gordon Hayward and a declining Klay Thompson read as overpaid, Desmond Bane on his rookie deal and an early-career Pascal Siakam read as underpaid. Shipped as an interactive Streamlit explorer with player lookup and over/underpaid leaderboards.",
-    metric: "R² ≈ 0.73 (0.62–0.78 across held-out seasons)",
-    metricExplanation:
-      "On a scale where 1.0 means the model predicts fair salary perfectly and 0 means it's no better than guessing the average, 0.73 means performance stats alone explain about 73% of what a player actually gets paid.",
-    whatIdDoDifferently:
-      "TODO: Nathan, what's next for this one? More recent seasons, injury data, positional adjustments?",
-    links: {
-      repo: "https://github.com/TNT57/NBA-fair-value",
-      demo: "https://nba-fair-value.streamlit.app/",
+    subCategory: "RAG",
+    titleOutline: "VISA",
+    headline: {
+      value: "80%",
+      label: "top-1 retrieval accuracy, up from 50%. Top-3 is 100%.",
     },
-    imageSrc: "/nbafairvaluescreenshot.png",
-  },
-  {
-    slug: "everything-larper",
-    title: "Everything Larper",
-    category: "Open source",
-    oneLine:
-      "A Claude Skill that turns a one-line persona prompt into fan commentary that reads like a real fan wrote it.",
-    role: "Solo build: skill design, slang reference guide, and the eval suite.",
-    status: "featured",
-    problem:
-      "Generic AI \"fan takes\" read as generic: no slang, no inside references, nothing a real fan would actually know. That's an obvious tell, and it's not useful for the moment before joining a conversation you're supposed to already have opinions on.",
-    approach:
-      "Built a Claude Skill (SKILL.md format) that takes a short persona prompt (e.g. \"World Cup 2026 Messi Fan\") and generates concise commentary with inside references, real statistics, rivalry banter and a distinctive sign-off. A slang reference guide keeps vocabulary genuinely insider across football, NBA and esports, with a tone kept sarcastic but warm and aimed at situations rather than real people.",
-    result:
-      "Added an evaluation framework with quality rubrics and adversarial guardrail tests, specifically checking the skill never fabricates quotes or uses real athletes' likenesses in a way that could misrepresent them, since this is a public, attributed tool anyone can install.",
-    // Nathan: no one's really used this yet, so there's no adoption number to show.
-    metric: "TODO: no usage data yet for this one",
-    metricExplanation:
-      "TODO: pick a real, honest metric once one exists (e.g. guardrail-test pass rate), or leave this card without a number.",
-    whatIdDoDifferently:
-      "TODO: Nathan, anything you'd change here (more fandoms, a real usage metric, packaging)?",
-    links: {
-      repo: "https://github.com/TNT57/Everything-Larper",
-    },
-    imageSrc: "/everything-larper-card.png",
+    stack: ["Headless Chromium", "ChromaDB", "Llama 3.3 70B", "GitHub Actions"],
+    pipeline: [
+      { step: "render", title: "Headless Chromium", text: "Renders pages that only load with JavaScript." },
+      { step: "embed", title: "ChromaDB index", text: "Overlapping chunks, 768-dimension vectors." },
+      { step: "answer", title: "Llama 3.3 70B", text: "Answers using only the retrieved passages." },
+      { step: "verify", title: "Grounded check", text: "A second pass labels each answer grounded or not." },
+    ],
+    stats: [
+      { label: "Top-1 retrieval accuracy", value: "80%", before: 50, after: 80 },
+      { label: "Top-3 retrieval accuracy", value: "100%", before: 70, after: 100 },
+    ],
   },
   {
     slug: "pricecheck-au",
@@ -124,5 +117,92 @@ export const projects: Project[] = [
       // No repo link: the repo is private.
     },
     imageSrc: "/pricecheckscreenshot.png",
+    titleOutline: "AU",
+    headline: { value: "63,662", label: "products tracked live across 3 supermarket chains." },
+    stack: ["Next.js", "tRPC", "Prisma", "Postgres"],
+    pipeline: [
+      { step: "collect", title: "Three collectors", text: "Polite, rate-limited, one for each store." },
+      { step: "review", title: "Human review", text: "Prices land as drafts that a person reviews first." },
+      { step: "check", title: "Automated checks", text: "Row-count floor, staples basket, price sanity, week-on-week." },
+      { step: "store", title: "Full history", text: "Every price is a new row, never overwritten." },
+    ],
+    stats: [
+      { label: "Products tracked", value: "63,662" },
+      { label: "Recorded prices", value: "64,883" },
+    ],
+  },
+  {
+    slug: "nba-fair-value-model",
+    title: "NBA Fair-Value Model",
+    category: "AI/ML",
+    oneLine:
+      "Predicts what an NBA player is actually worth from on-court performance alone, then flags who's overpaid or underpaid.",
+    role: "Solo rebuild of an earlier coursework project.",
+    status: "active",
+    problem:
+      "Rebuilt from an earlier data-mining coursework version. That original model had target leakage: salary-derived numbers were still present in the feature matrix, so it was partly predicting salary from salary rather than from performance, which made its \"fair value\" number meaningless.",
+    approach:
+      "Retrained a gradient-boosted model on six seasons (about 2,100 player-seasons) of performance-only stats scraped from Basketball-Reference and ESPN, covering scoring, rebounding, playmaking, efficiency, age and availability, with every salary-derived column removed. Added a unit test that fails the build if any salary-derived column re-enters the feature matrix, and validated with leave-one-season-out cross-validation rather than a single train/test split.",
+    result:
+      "The rebuilt model holds an R² of 0.73 across held-out seasons (0.62 to 0.78 depending on the season), and recovers cases that match intuition: Gordon Hayward and a declining Klay Thompson read as overpaid, Desmond Bane on his rookie deal and an early-career Pascal Siakam read as underpaid. Shipped as an interactive Streamlit explorer with player lookup and over/underpaid leaderboards.",
+    metric: "R² ≈ 0.73 (0.62–0.78 across held-out seasons)",
+    metricExplanation:
+      "On a scale where 1.0 means the model predicts fair salary perfectly and 0 means it's no better than guessing the average, 0.73 means performance stats alone explain about 73% of what a player actually gets paid.",
+    whatIdDoDifferently:
+      "TODO: Nathan, what's next for this one? More recent seasons, injury data, positional adjustments?",
+    links: {
+      repo: "https://github.com/TNT57/NBA-fair-value",
+      demo: "https://nba-fair-value.streamlit.app/",
+    },
+    imageSrc: "/nbafairvaluescreenshot.png",
+    titleOutline: "Fair-Value",
+    headline: { value: "R² 0.73", label: "across held-out seasons (0.62 to 0.78)." },
+    stack: ["Gradient boosting", "Leave-one-season-out CV", "Streamlit"],
+    pipeline: [
+      { step: "scrape", title: "Six seasons", text: "About 2,100 player-seasons of performance stats." },
+      { step: "clean", title: "No salary leaks", text: "Every salary-derived column removed, guarded by a unit test." },
+      { step: "train", title: "Gradient boosting", text: "Trained on performance-only features." },
+      { step: "validate", title: "Held-out seasons", text: "Leave-one-season-out cross-validation, not one split." },
+    ],
+    stats: [
+      { label: "Model fit, R² across held-out seasons", value: "0.73", after: 73 },
+    ],
+  },
+  {
+    slug: "everything-larper",
+    title: "Everything Larper",
+    category: "Open source",
+    oneLine:
+      "A Claude Skill that turns a one-line persona prompt into fan commentary that reads like a real fan wrote it.",
+    role: "Solo build: skill design, slang reference guide, and the eval suite.",
+    status: "featured",
+    problem:
+      "Generic AI \"fan takes\" read as generic: no slang, no inside references, nothing a real fan would actually know. That's an obvious tell, and it's not useful for the moment before joining a conversation you're supposed to already have opinions on.",
+    approach:
+      "Built a Claude Skill (SKILL.md format) that takes a short persona prompt (e.g. \"World Cup 2026 Messi Fan\") and generates concise commentary with inside references, real statistics, rivalry banter and a distinctive sign-off. A slang reference guide keeps vocabulary genuinely insider across football, NBA and esports, with a tone kept sarcastic but warm and aimed at situations rather than real people.",
+    result:
+      "Added an evaluation framework with quality rubrics and adversarial guardrail tests, specifically checking the skill never fabricates quotes or uses real athletes' likenesses in a way that could misrepresent them, since this is a public, attributed tool anyone can install.",
+    // Nathan: no one's really used this yet, so there's no adoption number to show.
+    metric: "TODO: no usage data yet for this one",
+    metricExplanation:
+      "TODO: pick a real, honest metric once one exists (e.g. guardrail-test pass rate), or leave this card without a number.",
+    whatIdDoDifferently:
+      "TODO: Nathan, anything you'd change here (more fandoms, a real usage metric, packaging)?",
+    links: {
+      repo: "https://github.com/TNT57/Everything-Larper",
+    },
+    titleOutline: "Larper",
+    stack: ["Claude Skills (SKILL.md)", "Eval rubrics", "Guardrail tests"],
+    pipeline: [
+      { step: "prompt", title: "One-line persona", text: "For example \"World Cup 2026 Messi Fan\"." },
+      { step: "reference", title: "Slang guide", text: "Keeps vocabulary insider across football, NBA and esports." },
+      { step: "generate", title: "Fan commentary", text: "Real statistics, rivalry banter and a sign-off." },
+      { step: "test", title: "Guardrails", text: "Quality rubrics and adversarial guardrail tests." },
+    ],
   },
 ];
+
+// Placeholder text still waiting on Nathan starts with "TODO" — pages skip it.
+export function isTodo(text: string | undefined): boolean {
+  return !text || text.trim().startsWith("TODO");
+}

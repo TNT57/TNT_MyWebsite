@@ -1,5 +1,8 @@
 import { projects } from "@/content/projects";
 import { pageMetadata } from "@/app/seo";
+import { Container } from "@/components/Container";
+import { PageHero } from "@/components/PageHero";
+import { ContactCTA } from "@/components/ContactCTA";
 import { ProjectsClient } from "./ProjectsClient";
 
 export const metadata = pageMetadata({
@@ -10,13 +13,20 @@ export const metadata = pageMetadata({
 
 export default function ProjectsPage() {
   return (
-    <div className="py-10">
-      <h1 className="text-3xl font-bold tracking-tight text-text">Projects</h1>
-      <p className="mt-2 mb-8 max-w-[66ch] text-text-muted">
-        Everything I&apos;ve built, filterable by kind. Archived projects are
-        shown de-emphasised below the current ones.
-      </p>
-      <ProjectsClient projects={projects} />
-    </div>
+    <>
+      <PageHero
+        eyebrowLeft={`(${String(projects.length).padStart(2, "0")}) projects, all built solo`}
+        eyebrowRight="Everything I've built, filterable by kind"
+        title={
+          <>
+            All <span className="outline-text">work</span>
+          </>
+        }
+      />
+      <Container>
+        <ProjectsClient projects={projects} />
+        <ContactCTA />
+      </Container>
+    </>
   );
 }
