@@ -40,6 +40,10 @@ html {
   /* Keep anchors and keyboard focus clear of the sticky menu. */
   scroll-padding-top: 80px;
 }
+/* Below ~375px the menu wraps to two rows (about 113px tall). */
+@media (max-width: 374px) {
+  html { scroll-padding-top: 128px; }
+}
 
 body {
   background: var(--bg);

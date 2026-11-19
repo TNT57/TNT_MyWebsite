@@ -21,7 +21,10 @@ import { ArrowDown, ArrowUpRight } from "@/components/Icons";
 
 const shownProjects = projects.filter((project) => project.status !== "archive");
 const [study, internship] = background;
+// Hobbies come from content/about.ts: the ones Nathan built (with a link)
+// get their own card, the rest share one card.
 const gaming = hobbyItems.find((item) => item.link);
+const pastimes = hobbyItems.filter((item) => !item.link);
 
 export default function Home() {
   return (
@@ -153,16 +156,16 @@ export default function Home() {
 
             <Link
               href="/hobby"
-              aria-label="Hobbies: sports and music"
+              aria-label={`Hobbies: ${pastimes.map((i) => i.category.toLowerCase()).join(" and ")}`}
               className="lift box-border flex min-w-0 flex-[1_1_240px] flex-col gap-3 rounded-[22px] border border-line bg-surface p-[clamp(22px,2.6vw,32px)]"
             >
-              <span className="font-mono text-xs tracking-[0.1em] text-accent uppercase">Sports + music</span>
+              <span className="font-mono text-xs tracking-[0.1em] text-accent uppercase">
+                {pastimes.map((i) => i.category).join(" + ")}
+              </span>
               <span className="font-display text-2xl leading-[1.1] font-bold tracking-[-0.03em]">
-                Basketball, soccer, piano, guitar.
+                {pastimes.map((i) => i.headline).join(" ")}
               </span>
-              <span className="text-[14.5px] text-muted">
-                I&apos;m vice-president of a Vietnamese community soccer club here in Adelaide, and I play a bit of drums too.
-              </span>
+              <span className="text-[14.5px] text-muted">{pastimes.map((i) => i.text).join(" ")}</span>
             </Link>
 
             {gaming?.link ? (
@@ -175,9 +178,7 @@ export default function Home() {
               >
                 <span className="font-mono text-xs tracking-[0.1em] text-accent uppercase">{gaming.category}</span>
                 <span className="font-display text-2xl leading-[1.1] font-bold tracking-[-0.03em]">{gaming.headline}</span>
-                <span className="text-[14.5px] text-muted">
-                  A browser tool I built to practise smite timing on the dragon. It gets harder as you improve.
-                </span>
+                <span className="text-[14.5px] text-muted">{gaming.text}</span>
                 <span className="flex-auto" />
                 <span className="flex min-h-11 items-center gap-2 text-sm font-medium text-accent">
                   {gaming.link.label} <ArrowUpRight />

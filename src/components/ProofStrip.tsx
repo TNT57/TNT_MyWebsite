@@ -40,6 +40,18 @@ export function ProofStrip({ stats }: { stats: ProofStat[] }) {
       frame = requestAnimationFrame(tick);
     };
 
+    // Very old browsers (Safari before 12.1) have no IntersectionObserver:
+    // count straight away rather than throwing and taking the page down.
+    if (!("IntersectionObserver" in window)) {
+      timer = setTimeout(run, 900);
+      return () => {
+        cancelAnimationFrame(pre);
+        cancelAnimationFrame(frame);
+        clearTimeout(timer);
+        setProgress(1);
+      };
+    }
+
     // Wait for the hero to finish landing before counting.
     const observer = new IntersectionObserver(
       (entries) => {

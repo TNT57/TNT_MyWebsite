@@ -88,7 +88,7 @@ export const hobbyItems: HobbyItem[] = [
   {
     category: "Gaming",
     headline: "SmiteMe",
-    text: "SmiteMe — a browser tool I built to practice smite timing on the dragon in League of Legends and Honor of Kings. It judges each tap Perfect to Too Slow and gets harder as you improve.",
+    text: "A browser tool I built to practice smite timing on the dragon in League of Legends and Honor of Kings. It judges each tap Perfect to Too Slow and gets harder as you improve.",
     image: "hobby-gaming.png",
     link: { label: "Try it", href: "https://tnt57.github.io/SmiteMe" },
   },
