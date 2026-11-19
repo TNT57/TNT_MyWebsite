@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Skill } from "@/content/home";
 import { ArrowRight } from "@/components/Icons";
+import { pad2 } from "@/lib/format";
 
 // "What I can do" cards; each ends with links to the work that proves it.
 export function SkillCards({ skills }: { skills: Skill[] }) {
@@ -12,7 +13,7 @@ export function SkillCards({ skills }: { skills: Skill[] }) {
           className="skill-card flex flex-col gap-4 rounded-[22px] border border-line bg-surface p-[clamp(22px,2.4vw,28px)]"
         >
           <span className="skill-num font-mono text-[13px] text-muted">
-            {String(i + 1).padStart(2, "0")}
+            {pad2(i + 1)}
           </span>
           <h3 className="m-0 font-display text-[26px] leading-[1.08] font-bold tracking-[-0.035em]">
             {skill.title}

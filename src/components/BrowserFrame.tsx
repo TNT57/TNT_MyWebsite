@@ -21,12 +21,3 @@ export function BrowserFrame({ label, children }: BrowserFrameProps) {
     </>
   );
 }
-
-// "https://price-check-au.vercel.app/" -> "price-check-au.vercel.app"
-export function hostOf(url: string): string {
-  try {
-    return new URL(url).host;
-  } catch {
-    return url;
-  }
-}

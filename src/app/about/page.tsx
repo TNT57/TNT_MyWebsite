@@ -41,7 +41,7 @@ export default function AboutPage() {
         }
         title={
           <>
-            About <span className="outline-text">me</span>
+            About me
           </>
         }
       />

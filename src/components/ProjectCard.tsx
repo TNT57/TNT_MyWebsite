@@ -1,8 +1,7 @@
-import type { Project } from "@/content/projects";
+import { categoryLabel, type Project } from "@/content/projects";
 import { TiltCard } from "@/components/TiltCard";
 import { ProjectVisual } from "@/components/ProjectVisual";
 import { ProjectLinks } from "@/components/ProjectLinks";
-import { categoryLabel } from "@/components/ProjectRow";
 
 interface ProjectCardProps {
   project: Project;

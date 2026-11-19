@@ -4,7 +4,8 @@ import { GlowArea } from "@/components/GlowArea";
 interface PageHeroProps {
   eyebrowLeft: React.ReactNode;
   eyebrowRight?: React.ReactNode;
-  // The giant heading. Wrap one word in <span className="outline-text">.
+  // The giant heading. Plain words: the hollow glowing style is kept for
+  // the homepage name only.
   title: React.ReactNode;
   titleClassName?: string;
   children?: React.ReactNode;

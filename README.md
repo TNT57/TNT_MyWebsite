@@ -1,6 +1,7 @@
 # Nathan Tran — Portfolio
 
-Next.js (App Router) + TypeScript + Tailwind. `npm run dev` to run locally.
+Next.js (App Router) + TypeScript + Tailwind. `npm run dev` to run locally,
+`npm test` to run the tests (helpers and content-link checks, via Vitest).
 
 ## Add a project
 
@@ -15,8 +16,7 @@ etc.). The design also uses:
   when there is no honest number yet.
 - `stats` (optional) — big numbers under Result; `before`/`after` (0–100)
   draw a comparison bar.
-- `subCategory`, `titleOutline` (optional) — the label after the category,
-  and the title word drawn as glowing outline text.
+- `subCategory` (optional) — the label after the category, e.g. "RAG".
 
 Set `status` to `"featured"` or `"active"` (shown on the homepage and
 `/projects`) or `"archive"` (only on `/projects`, de-emphasised). The order of

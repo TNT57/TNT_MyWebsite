@@ -27,7 +27,7 @@ export function ScrambleText({ text, start = "load", delay = 0, className }: Scr
   const ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!canAnimate()) return;
+    if (!canAnimate(ref.current)) return;
 
     let frame = 0;
     let timer: ReturnType<typeof setTimeout> | undefined;

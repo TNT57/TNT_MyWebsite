@@ -74,20 +74,16 @@ export default function Home() {
         <section aria-labelledby="skills-title" className="pt-[clamp(64px,8vw,112px)]">
           <div className="mb-[clamp(28px,4vw,48px)] flex flex-wrap items-end justify-between gap-3">
             <div className="flex flex-col gap-3.5">
-              <ScrambleText
-                text="// what I can do for your team"
-                start="view"
-                className="font-mono text-[13px] text-accent"
-              />
+              <span className="font-mono text-[13px] text-muted">What I can do for your team</span>
               <h2
                 id="skills-title"
                 className="m-0 font-display text-[clamp(40px,6.4vw,92px)] leading-[0.9] font-bold tracking-[-0.055em] uppercase"
               >
-                What I can <span className="outline-text">do</span>
+                Skills, with receipts
               </h2>
             </div>
             <span className="max-w-[38ch] font-mono text-[13px] text-muted">
-              Every skill below points to a project that proves it.
+              Each skill links to the project that proves it.
             </span>
           </div>
           <SkillCards skills={skills} />
@@ -97,21 +93,17 @@ export default function Home() {
           {/* The jump target sits on the heading row, so "See the work" lands on it. */}
           <div id="work" className="mb-[clamp(40px,6vw,80px)] flex flex-wrap items-end justify-between gap-3">
             <div className="flex flex-col gap-3.5">
-              <ScrambleText
-                text="// the proof, in detail"
-                start="view"
-                className="font-mono text-[13px] text-accent"
-              />
+              <span className="font-mono text-[13px] text-muted">
+                {shownProjects.length} solo builds, each live or open source
+              </span>
               <h2
                 id="work-title"
                 className="m-0 font-display text-[clamp(40px,6.4vw,92px)] leading-[0.9] font-bold tracking-[-0.055em] uppercase"
               >
-                Selected work
+                Things I shipped
               </h2>
             </div>
-            <span className="font-mono text-[13px] text-muted">
-              ({String(shownProjects.length).padStart(2, "0")}) projects, all built solo
-            </span>
+            <span className="font-mono text-[13px] text-muted">Demos and code linked on each</span>
           </div>
           <div className="flex flex-col gap-[clamp(72px,9vw,128px)]">
             {shownProjects.map((project, index) => (
@@ -126,9 +118,9 @@ export default function Home() {
               id="human-title"
               className="m-0 font-display text-[clamp(40px,6.4vw,92px)] leading-[0.9] font-bold tracking-[-0.055em] uppercase"
             >
-              The human
+              Off the keyboard
             </h2>
-            <span className="font-mono text-[13px] text-muted">study, work, and outside of code</span>
+            <span className="font-mono text-[13px] text-muted">Study, work, soccer and music</span>
           </div>
           <div className="flex flex-wrap gap-4">
             <Link
