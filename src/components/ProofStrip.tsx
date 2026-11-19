@@ -71,7 +71,7 @@ export function ProofStrip({ stats }: { stats: ProofStat[] }) {
       ref={ref}
       className="rise rise-6 overflow-hidden rounded-[20px] border border-line bg-[rgba(10,15,23,0.72)]"
     >
-      <ul className="m-0 grid list-none grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-4 bg-line p-0">
+      <ul className="m-0 grid list-none grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3 bg-line p-0">
         {stats.map((stat) => (
           <li key={stat.label} className="flex">
             <Link
@@ -82,13 +82,13 @@ export function ProofStrip({ stats }: { stats: ProofStat[] }) {
                 {stat.label}
                 <ArrowUpRight size={13} />
               </span>
-              <span className="font-display text-[clamp(40px,4.2vw,60px)] leading-none font-bold tracking-[-0.05em] tabular-nums [text-shadow:0_0_40px_color-mix(in_srgb,var(--accent)_40%,transparent)]">
+              <span className="font-display text-[clamp(40px,4.2vw,60px)] leading-none font-bold tracking-[-0.05em] tabular-nums">
                 <span aria-hidden="true">{formatCountUp(stat, progress)}</span>
                 <span className="sr-only">{formatCountUp(stat, 1)}</span>
               </span>
               <span aria-hidden="true" className="block h-[3px] rounded-sm bg-[#121a26]">
                 <span
-                  className="block h-full rounded-sm bg-accent shadow-[0_0_12px_var(--accent)]"
+                  className="block h-full rounded-sm bg-accent"
                   style={{ width: `${stat.bar * progress}%` }}
                 />
               </span>

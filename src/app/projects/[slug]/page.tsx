@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { categoryLabel, isTodo, projects, type Project } from "@/content/projects";
+import { categoryLabel, isTodo, projects } from "@/content/projects";
 import { pad2 } from "@/lib/format";
 import { pageMetadata } from "@/app/seo";
 import { Container } from "@/components/Container";
@@ -35,20 +35,6 @@ export async function generateMetadata({
     description: project.oneLine,
     path: `/projects/${project.slug}`,
   });
-}
-
-// Draws one word of the title as glowing outline text.
-function OutlinedTitle({ project }: { project: Project }) {
-  const word = project.titleOutline;
-  const at = word ? project.title.indexOf(word) : -1;
-  if (!word || at < 0) return <>{project.title}</>;
-  return (
-    <>
-      {project.title.slice(0, at)}
-      <span className="outline-text">{word}</span>
-      {project.title.slice(at + word.length)}
-    </>
-  );
 }
 
 function SectionRow({
@@ -93,7 +79,7 @@ function Bar({ label, value, accent }: { label: string; value: number; accent?: 
       <div className="h-1.5 flex-auto rounded-[3px] bg-[#121a26]">
         <div
           className={`bar-grow h-full rounded-[3px] ${
-            accent ? "bg-accent shadow-[0_0_14px_var(--accent)]" : "bg-[#4a586e]"
+            accent ? "bg-accent" : "bg-[#4a586e]"
           }`}
           style={{ width: `${value}%` }}
         />
@@ -132,7 +118,7 @@ export default async function ProjectPage({
               </span>
             </div>
             <h1 className="rise rise-1 m-0 font-display text-[clamp(38px,7.4vw,112px)] leading-[0.9] font-bold tracking-[-0.06em] text-balance uppercase">
-              <OutlinedTitle project={project} />
+              {project.title}
             </h1>
             <p className="rise rise-2 m-0 max-w-[58ch] text-[clamp(17px,1.6vw,21px)] text-pretty text-soft">
               {project.oneLine}
@@ -203,7 +189,7 @@ export default async function ProjectPage({
                       className="box-border flex min-w-0 flex-[1_1_280px] flex-col gap-4 rounded-[22px] border border-line bg-surface p-[clamp(22px,2.6vw,32px)]"
                     >
                       <span className="font-mono text-xs tracking-[0.1em] text-muted uppercase">{stat.label}</span>
-                      <span className="font-display text-[clamp(56px,7vw,112px)] leading-[0.9] font-bold tracking-[-0.06em] text-accent [text-shadow:0_0_60px_color-mix(in_srgb,var(--accent)_55%,transparent)]">
+                      <span className="font-display text-[clamp(56px,7vw,112px)] leading-[0.9] font-bold tracking-[-0.06em] text-accent">
                         {stat.value}
                       </span>
                       {stat.after !== undefined ? (

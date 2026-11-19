@@ -38,7 +38,7 @@ export function ProjectRow({ project, index }: ProjectRowProps) {
         <p className="m-0 max-w-[50ch] text-muted">{project.oneLine}</p>
         {project.headline ? (
           <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1.5">
-            <span className="font-display text-[clamp(44px,5vw,72px)] leading-none font-bold tracking-[-0.05em] text-accent [text-shadow:0_0_50px_color-mix(in_srgb,var(--accent)_55%,transparent)]">
+            <span className="font-display text-[clamp(44px,5vw,72px)] leading-none font-bold tracking-[-0.05em] text-accent">
               {project.headline.value}
             </span>
             <span className="flex-[1_1_200px] text-[14.5px] text-soft">

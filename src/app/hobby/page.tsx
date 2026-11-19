@@ -37,7 +37,7 @@ export default function HobbyPage() {
         titleClassName="max-w-[9ch] text-[clamp(56px,13vw,196px)]"
         title={
           <>
-            Outside <span className="outline-text">of code</span>
+            Outside of code
           </>
         }
       />

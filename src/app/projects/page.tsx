@@ -20,7 +20,7 @@ export default function ProjectsPage() {
         eyebrowRight="Everything I've built, filterable by kind"
         title={
           <>
-            All <span className="outline-text">work</span>
+            All work
           </>
         }
       />

@@ -16,9 +16,9 @@ export function ContactCTA({ showResume = true }: { showResume?: boolean }) {
       </span>
       <h2
         id="contact-title"
-        className="m-0 font-display text-[clamp(56px,13vw,200px)] leading-[0.84] font-bold tracking-[-0.065em] uppercase"
+        className="m-0 max-w-[14ch] font-display text-[clamp(44px,9vw,136px)] leading-[0.9] font-bold tracking-[-0.06em] text-balance uppercase"
       >
-        Let&apos;s <span className="outline-text">talk</span>
+        Got a role in mind?
       </h2>
       <div className="flex flex-wrap gap-3">
         <a

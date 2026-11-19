@@ -38,15 +38,6 @@ export const proofStats: ProofStat[] = [
     note: "NBA model, on held-out seasons.",
     href: "/projects/nba-fair-value-model",
   },
-  {
-    label: "GPA",
-    value: 6.7,
-    decimals: 1,
-    suffix: " / 7",
-    bar: 95.7,
-    note: "B.CompSci (AI), University of Adelaide.",
-    href: "/about",
-  },
 ];
 
 export interface Skill {

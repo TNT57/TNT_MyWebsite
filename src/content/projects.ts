@@ -37,8 +37,6 @@ export interface Project {
   imageSrc?: string;
   // Short label shown next to the category, e.g. "RAG". Optional.
   subCategory?: string;
-  // One word of the title drawn as glowing outline text on the case study.
-  titleOutline?: string;
   // Big number on project cards. Leave out when there's no honest number yet.
   headline?: { value: string; label: string };
   stack: string[];
@@ -76,7 +74,6 @@ export const projects: Project[] = [
     },
     imageSrc: "/autoupdatevisascreenshot.png",
     subCategory: "RAG",
-    titleOutline: "VISA",
     headline: {
       value: "80%",
       label: "top-1 retrieval accuracy, up from 50%. Top-3 is 100%.",
@@ -117,7 +114,6 @@ export const projects: Project[] = [
       // No repo link: the repo is private.
     },
     imageSrc: "/pricecheckscreenshot.png",
-    titleOutline: "AU",
     headline: { value: "63,662", label: "products tracked live across 3 supermarket chains." },
     stack: ["Next.js", "tRPC", "Prisma", "Postgres"],
     pipeline: [
@@ -155,7 +151,6 @@ export const projects: Project[] = [
       demo: "https://nba-fair-value.streamlit.app/",
     },
     imageSrc: "/nbafairvaluescreenshot.png",
-    titleOutline: "Fair-Value",
     headline: { value: "R² 0.73", label: "across held-out seasons (0.62 to 0.78)." },
     stack: ["Gradient boosting", "Leave-one-season-out CV", "Streamlit"],
     pipeline: [
@@ -191,7 +186,6 @@ export const projects: Project[] = [
     links: {
       repo: "https://github.com/TNT57/Everything-Larper",
     },
-    titleOutline: "Larper",
     stack: ["Claude Skills (SKILL.md)", "Eval rubrics", "Guardrail tests"],
     pipeline: [
       { step: "prompt", title: "One-line persona", text: "For example \"World Cup 2026 Messi Fan\"." },
