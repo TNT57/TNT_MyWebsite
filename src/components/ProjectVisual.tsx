@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Project } from "@/content/projects";
-import { BrowserFrame, hostOf } from "@/components/BrowserFrame";
+import { BrowserFrame } from "@/components/BrowserFrame";
+import { hostOf } from "@/lib/format";
 import { ArrowDown } from "@/components/Icons";
 
 // The Everything Larper "screenshot": a prompt turning into commentary.

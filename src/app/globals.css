@@ -115,6 +115,13 @@ button:focus-visible {
   animation: outline-glow 4s ease-in-out infinite;
 }
 
+/* Browsers without outline-text support would show transparent (invisible)
+   words, so give them solid colours instead. */
+@supports not (-webkit-text-stroke: 1px black) {
+  .outline-text { color: var(--accent); }
+  .outline-num, .next-word { color: var(--stroke-dim); }
+}
+
 /* Hollow grey section numbers that light up when their group is hovered. */
 .outline-num {
   color: transparent;

@@ -3,13 +3,13 @@
 import { useState } from "react";
 import type { Project } from "@/content/projects";
 import { ProjectCard } from "@/components/ProjectCard";
+import { pad2 } from "@/lib/format";
 
 interface ProjectsClientProps {
   projects: Project[];
 }
 
 const ALL = "All";
-const pad = (n: number) => String(n).padStart(2, "0");
 
 export function ProjectsClient({ projects }: ProjectsClientProps) {
   const categories = Array.from(new Set(projects.map((p) => p.category)));
@@ -22,7 +22,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
 
   // Archived projects go last, de-emphasised.
   const visible = projects
-    .map((project, index) => ({ project, number: pad(index + 1) }))
+    .map((project, index) => ({ project, number: pad2(index + 1) }))
     .filter(({ project }) => active === ALL || project.category === active)
     .sort((a, b) => Number(a.project.status === "archive") - Number(b.project.status === "archive"));
 
@@ -46,7 +46,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
               }`}
             >
               {label}
-              <span className="font-mono text-xs font-medium">{pad(count)}</span>
+              <span className="font-mono text-xs font-medium">{pad2(count)}</span>
             </button>
           );
         })}

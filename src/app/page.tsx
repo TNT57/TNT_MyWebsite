@@ -8,6 +8,7 @@ import {
   hobbyItems,
 } from "@/content/about";
 import { projects } from "@/content/projects";
+import { pad2 } from "@/lib/format";
 import { proofStats, skills } from "@/content/home";
 import { Container } from "@/components/Container";
 import { GlowArea } from "@/components/GlowArea";
@@ -110,7 +111,7 @@ export default function Home() {
               </h2>
             </div>
             <span className="font-mono text-[13px] text-muted">
-              ({String(shownProjects.length).padStart(2, "0")}) projects, all built solo
+              ({pad2(shownProjects.length)}) projects, all built solo
             </span>
           </div>
           <div className="flex flex-col gap-[clamp(72px,9vw,128px)]">

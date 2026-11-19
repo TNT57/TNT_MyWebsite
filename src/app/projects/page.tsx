@@ -1,5 +1,6 @@
 import { projects } from "@/content/projects";
 import { pageMetadata } from "@/app/seo";
+import { pad2 } from "@/lib/format";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { ContactCTA } from "@/components/ContactCTA";
@@ -15,7 +16,7 @@ export default function ProjectsPage() {
   return (
     <>
       <PageHero
-        eyebrowLeft={`(${String(projects.length).padStart(2, "0")}) projects, all built solo`}
+        eyebrowLeft={`(${pad2(projects.length)}) projects, all built solo`}
         eyebrowRight="Everything I've built, filterable by kind"
         title={
           <>

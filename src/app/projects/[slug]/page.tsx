@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { isTodo, projects, type Project } from "@/content/projects";
+import { categoryLabel, isTodo, projects, type Project } from "@/content/projects";
+import { pad2 } from "@/lib/format";
 import { pageMetadata } from "@/app/seo";
 import { Container } from "@/components/Container";
 import { GlowArea } from "@/components/GlowArea";
 import { TiltCard } from "@/components/TiltCard";
 import { ProjectVisual } from "@/components/ProjectVisual";
-import { categoryLabel } from "@/components/ProjectRow";
 import { ArrowLeft, ArrowUpRight } from "@/components/Icons";
 
 export function generateStaticParams() {
@@ -114,7 +114,6 @@ export default async function ProjectPage({
 
   const project = projects[index];
   const next = projects[(index + 1) % projects.length];
-  const pad = (n: number) => String(n).padStart(2, "0");
 
   // Sections skip text that is still a TODO placeholder.
   const showResultNumbers = Boolean(project.stats?.length) && !isTodo(project.metric);
@@ -129,7 +128,7 @@ export default async function ProjectPage({
                 <ArrowLeft /> All projects
               </Link>
               <span className="text-accent">
-                ({pad(index + 1)}) {categoryLabel(project)}
+                ({pad2(index + 1)}) {categoryLabel(project)}
               </span>
             </div>
             <h1 className="rise rise-1 m-0 font-display text-[clamp(38px,7.4vw,112px)] leading-[0.9] font-bold tracking-[-0.06em] text-balance uppercase">
@@ -238,7 +237,7 @@ export default async function ProjectPage({
           className="next-link mt-[clamp(80px,10vw,136px)] flex flex-col gap-3.5 border-y border-line py-[clamp(32px,5vw,56px)]"
         >
           <span className="font-mono text-[13px] text-muted">
-            Next project ({pad(projects.indexOf(next) + 1)})
+            Next project ({pad2(projects.indexOf(next) + 1)})
           </span>
           <span
             className={`flex flex-wrap items-center gap-x-[clamp(16px,3vw,40px)] gap-y-3 font-display leading-[0.88] font-bold tracking-[-0.065em] uppercase ${

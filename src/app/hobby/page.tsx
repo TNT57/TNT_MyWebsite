@@ -7,9 +7,11 @@ import { pageMetadata } from "@/app/seo";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { TiltCard } from "@/components/TiltCard";
-import { BrowserFrame, hostOf } from "@/components/BrowserFrame";
+import { BrowserFrame } from "@/components/BrowserFrame";
+import { hostOf } from "@/lib/format";
 import { ContactCTA } from "@/components/ContactCTA";
 import { ArrowUpRight } from "@/components/Icons";
+import { pad2 } from "@/lib/format";
 
 export const metadata = pageMetadata({
   title: "Hobby",
@@ -17,7 +19,6 @@ export const metadata = pageMetadata({
   path: "/hobby",
 });
 
-const pad = (n: number) => String(n).padStart(2, "0");
 
 function imageExists(item: HobbyItem) {
   return fs.existsSync(path.join(process.cwd(), "public", item.image));
@@ -32,7 +33,7 @@ export default function HobbyPage() {
     <>
       <PageHero
         eyebrowLeft={hobbyIntro}
-        eyebrowRight={`(${pad(hobbyItems.length)}) ${hobbyItems.map((i) => i.category.toLowerCase()).join(", ")}`}
+        eyebrowRight={`(${pad2(hobbyItems.length)}) ${hobbyItems.map((i) => i.category.toLowerCase()).join(", ")}`}
         titleClassName="max-w-[9ch] text-[clamp(56px,13vw,196px)]"
         title={
           <>
@@ -76,7 +77,7 @@ export default function HobbyPage() {
                     aria-hidden="true"
                     className="outline-num font-display text-[56px] leading-[0.9] font-bold tracking-[-0.05em]"
                   >
-                    {pad(hobbyItems.indexOf(item) + 1)}
+                    {pad2(hobbyItems.indexOf(item) + 1)}
                   </span>
                   <span className="font-mono text-xs tracking-[0.1em] text-accent uppercase">{item.category}</span>
                 </div>
@@ -100,7 +101,7 @@ export default function HobbyPage() {
                   aria-hidden="true"
                   className="outline-num font-display text-[clamp(56px,6vw,88px)] leading-[0.9] font-bold tracking-[-0.05em]"
                 >
-                  {pad(hobbyItems.indexOf(item) + 1)}
+                  {pad2(hobbyItems.indexOf(item) + 1)}
                 </span>
                 <span className="font-mono text-xs tracking-[0.1em] text-accent uppercase">{item.category}</span>
               </div>

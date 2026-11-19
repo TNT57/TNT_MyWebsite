@@ -5,15 +5,8 @@ import { useEffect, useRef, useState } from "react";
 import type { ProofStat } from "@/content/home";
 import { ArrowUpRight } from "@/components/Icons";
 import { canAnimate } from "@/components/motion";
+import { formatCountUp } from "@/lib/format";
 
-function format(stat: ProofStat, progress: number) {
-  const n = stat.value * progress;
-  const body =
-    stat.decimals !== undefined
-      ? n.toFixed(stat.decimals)
-      : Math.round(n).toLocaleString("en-AU");
-  return `${stat.prefix ?? ""}${body}${stat.suffix ?? ""}`;
-}
 
 // The row of headline numbers under the hero. Numbers count up from 0 once
 // the strip is on screen; the server renders the final numbers.
@@ -22,9 +15,8 @@ export function ProofStrip({ stats }: { stats: ProofStat[] }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!canAnimate()) return;
     const el = ref.current;
-    if (!el) return;
+    if (!el || !canAnimate(el)) return;
 
     let frame = 0;
     let timer: ReturnType<typeof setTimeout> | undefined;
@@ -91,8 +83,8 @@ export function ProofStrip({ stats }: { stats: ProofStat[] }) {
                 <ArrowUpRight size={13} />
               </span>
               <span className="font-display text-[clamp(40px,4.2vw,60px)] leading-none font-bold tracking-[-0.05em] tabular-nums [text-shadow:0_0_40px_color-mix(in_srgb,var(--accent)_40%,transparent)]">
-                <span aria-hidden="true">{format(stat, progress)}</span>
-                <span className="sr-only">{format(stat, 1)}</span>
+                <span aria-hidden="true">{formatCountUp(stat, progress)}</span>
+                <span className="sr-only">{formatCountUp(stat, 1)}</span>
               </span>
               <span aria-hidden="true" className="block h-[3px] rounded-sm bg-[#121a26]">
                 <span

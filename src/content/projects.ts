@@ -202,6 +202,13 @@ export const projects: Project[] = [
   },
 ];
 
+// "AI/ML · RAG" — the category plus the optional sub-category.
+export function categoryLabel(project: Project): string {
+  return project.subCategory
+    ? `${project.category} · ${project.subCategory}`
+    : project.category;
+}
+
 // Placeholder text still waiting on Nathan starts with "TODO" — pages skip it.
 export function isTodo(text: string | undefined): boolean {
   return !text || text.trim().startsWith("TODO");

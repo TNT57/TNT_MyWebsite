@@ -1,6 +1,7 @@
 # Nathan Tran — Portfolio
 
-Next.js (App Router) + TypeScript + Tailwind. `npm run dev` to run locally.
+Next.js (App Router) + TypeScript + Tailwind. `npm run dev` to run locally,
+`npm test` to run the tests (helpers and content-link checks, via Vitest).
 
 ## Add a project
 

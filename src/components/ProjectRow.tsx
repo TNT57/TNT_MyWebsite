@@ -1,4 +1,5 @@
-import type { Project } from "@/content/projects";
+import { categoryLabel, type Project } from "@/content/projects";
+import { pad2 } from "@/lib/format";
 import { TiltCard } from "@/components/TiltCard";
 import { ProjectVisual } from "@/components/ProjectVisual";
 import { ProjectLinks } from "@/components/ProjectLinks";
@@ -8,16 +9,10 @@ interface ProjectRowProps {
   index: number;
 }
 
-export function categoryLabel(project: Project): string {
-  return project.subCategory
-    ? `${project.category} · ${project.subCategory}`
-    : project.category;
-}
-
 // Homepage: one big row per project, screenshot alternating left/right.
 export function ProjectRow({ project, index }: ProjectRowProps) {
   const flipped = index % 2 === 1;
-  const number = String(index + 1).padStart(2, "0");
+  const number = pad2(index + 1);
 
   return (
     <article
